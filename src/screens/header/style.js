@@ -7,13 +7,21 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  width:50%;
+  width:40%;
+  padding-left:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 `;
 
 export const Text = styled.p`
-  
+  padding-right:25px;
+  font-size:2.5em;
+  font-weight:bold;
+  color:white;
 `;
 
 export const Image = styled.img`
-  width:50%;
+  width:30%;
 `;

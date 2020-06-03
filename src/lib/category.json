@@ -1,0 +1,18 @@
+{
+    "Category": [
+        "iPhone XS Max",
+        "iPhone XS",
+        "iPhone XR",
+        "iPhone X",
+        "iPhone 8 Plus",
+        "iPhone 8",
+        "iPhone 7 Plus",
+        "iPhone 6S Plus",
+        "iPhone 6s",
+        "iPhone 6 Plus",
+        "iPhone 6",
+        "iPhone SE"
+    ],
+    "Condition":["New","A1","A2","b1","B2","C","C/B","C/D"],
+    "Storage":["16","32","64","128","256","512"]
+}

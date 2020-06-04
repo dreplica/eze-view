@@ -33,9 +33,3 @@ const composeEnhancers= compose(
 const store = createStore(AllReducers, composeEnhancers)
 
 export default store;
-
-// const Reducers = combineReducers({ItemsReducer, EffectReducer})
-
-// const initialState = {}
-
-// export default createStore(Reducers,initialState, applyMiddleware(thunk))

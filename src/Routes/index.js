@@ -1,20 +1,14 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import Screens from '../screens';
 import Category from '../components/category';
 import Pagination from '../components/pagination';
 import Navigate from '../components/Navigator';
 import LoadPhones from '../components/loadphones';
-import { fetchData } from '../store/actioncreators/items';
 import { Container, Content } from './style';
 
- function Routes(props) {
-	useEffect(() => {
-		props.fetch()
-		console.log("jam")
-	},) 
+ export default function Routes() {
 	return (
 		<Router>
 			<LoadPhones /> 
@@ -36,5 +30,3 @@ import { Container, Content } from './style';
 		</Router>
 	);
 }
-
-export default connect(null,{fetch:fetchData})(Routes)

@@ -13,6 +13,7 @@ const initialAction ={
 const ItemsReducer = (state = initialState, action=initialAction) => {
     switch (action.type) {
         case 'Fetch_data':
+            console.log("hafa e enter")
             return {
                 ...state,
                 currentData: action.payload,

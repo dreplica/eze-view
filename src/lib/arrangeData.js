@@ -1,5 +1,6 @@
 export default function (data) {
-    const { previous, next, result } = data;
+    // const { previous, next, result } = data;
+    const result = data;
 
     const phone = result.reduce((acc, val) => {
         const phone = val.phone
@@ -7,16 +8,20 @@ export default function (data) {
         const sell = val.sale
 
         const distribution = getIndividualPhones(val.spec)
-        distribution.forEach((item) => {
-            item.phone = phone;
-            item.image = image;
-            item.sell = sell
+        const phoneDistro = distribution.map((item) => {
+            // console.log("an item", item)
+                item.phone = phone;
+                item.image = image;
+                item.sell = sell
+            // console.log(item)
+            return item;
         })
-        acc.push([...distribution])
+        acc.push(...phoneDistro)
         return acc;
     }, [])
 
-    return { previous, next, phone }
+    // return { previous, next, phone }
+    return phone
 
 }
 
@@ -25,17 +30,15 @@ const getIndividualPhones = (spec) => {
     return spec.reduce((acc, val) => {
         const memory = val.memory
         const locked = val.locked
-
         const priceKeys = Object.keys(val.price)
-
-        const distirbute = priceKeys.map((item) => ({
+        const distribute = priceKeys.map((item) => ({
             "price": val.price[item],
             memory: memory,
             locked: locked,
             condition: item
 
         }))
-        acc.push({ ...distirbute })
+        acc.push(...distribute)
         return acc;
     }, [])
 }

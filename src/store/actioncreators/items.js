@@ -3,16 +3,19 @@ import arrangeData from "../../lib/arrangeData"
 import mixData from "../../lib/mixData"
 
 
-export const fetchData = (url = "") => dispatch => async () => {
-    console.log("hofa")
+export const fetchData = (url = "") => async (dispatch) => {
     dispatch({ type: 'Loading' })
     try {
         console.log("bread")
-        const result = await Axios.get(`http://localhost/3000/${url}`).data
-        const arrange = arrangeData(result)
+        const result = await Axios.get(`http://localhost:3000/${url}`)
+        console.log(await result.data)
+        const arrange = arrangeData(result.data)
+        console.log("arange", arrange)
+        // console.error("arange", arrange)
         dispatch({ type: 'Fetch_data', payload: mixData(arrange) })
     } catch (error) {
-        // dispatch({ type: "Error" })
+        console.log(error)
+        dispatch({ type: "Error" })
     }
 }
 

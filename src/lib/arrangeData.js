@@ -1,7 +1,7 @@
 export default  function (data) {
     const { previous, next, result } =  data;
 
-    const phone = result.reduce((acc, val, ind) => {
+    const phone = result.reduce((acc, val) => {
         const phone = val.phone
         const image = val.image
         const sell = val.sale

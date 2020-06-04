@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import categoryJson from '../../lib/category.json';
-import { Container, PhoneType, Phones,Context,Selection,Price, Item } from './style';
+import { Container,Filter, Phones,Context,Price, Item } from './style';
 
 export default function Category() {
 
@@ -13,28 +13,29 @@ export default function Category() {
 
     return (
         <Container>
-            <PhoneType>
+            <Filter>Filter</Filter>
+            {/* <PhoneType>
                 <Context>Type</Context>
                 <Phones>
                     {categoryJson.Category.map((cat, ind) => <Link key={ind} to={`/${cat}`}>{cat}</Link>)}
-                </Phones>
-            </PhoneType>
+                    </Phones>
+                </PhoneType> */}
 
-            <Context>Condition</Context>
+            {/* <Context>Condition</Context>
             <Selection>
                 {categoryJson.Condition.map((cond,ind)=><option key={ind} value={`${cond}`}>{cond}</option>)}
-            </Selection>
+            </Selection> */}
 
+            <Context>Price :</Context>
             <Price>
-                <Context>Filter</Context>
                 <Item>Min</Item>
                 <Item>Max</Item>
             </Price>
 
-            <Context>Storage</Context>
-            <Selection>
-                {categoryJson.Storage.map((cond,ind)=><option key={ind} value={`${cond}`}>{cond}</option>)}
-            </Selection>
+            <Context>Storage :</Context>
+            <Phones>
+                {categoryJson.Storage.map((cat, ind) => <Link key={ind} to={`/${cat}`}> + {cat}GB</Link>)}  
+            </Phones>
         </Container>
     );
 }

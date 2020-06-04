@@ -3,7 +3,7 @@ import arrangeData from "../../lib/arrangeData"
 import mixData from "../../lib/mixData"
 
 
-export const fetchData = (url = "") => (dispatch) => async () => {
+export const fetchData = (url = "") => dispatch => async () => {
     console.log("hofa")
     dispatch({ type: 'Loading' })
     try {

@@ -6,14 +6,15 @@ import { Container, Link, } from './style'
 import Spinner from '../spinner';
 
 function LoadPhones({loadPhones,fetch}) {
-    // useEffect(() => {
-      
-    // }, [loadPhones])
-    // console.log(loadPhones)
+    useEffect(() => {
+    //   fetch()
+    }, [])
+    console.log(loadPhones)
 
     const fetchingProcess = () => {
         //this loadphones has to come through effect
         //this function is not suppose to happen here
+        fetch()
         if (loadPhones === true) {
             
         }

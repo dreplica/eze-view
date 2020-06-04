@@ -6,7 +6,7 @@ export default function Phone() {
 	return (
 		<Container>
 			<Price>$500</Price>
-			<Image src="/assets/one.jpg" alt="phone" />
+			<Image src="/assets/five.jpg" alt="phone" />
 			<Text style={{fontWeight:'bolder'}}>iPhone 5s</Text>
 			<Text>Unlocked | 256GB</Text>
 			<Button>BUY</Button>

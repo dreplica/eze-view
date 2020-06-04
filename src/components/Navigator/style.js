@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width:100%;
-  height:30px;
+  height:35px;
   display:flex;
   justify-content:space-around;
   align-items:flex-end;
@@ -10,9 +10,11 @@ export const Container = styled.div`
 
   a{
       width:30%;
-      height:30px;
-      padding-bottom:5px;
+      height:35px;
+      padding-top:6px ;
+      padding-bottom:5px ;
       color:white;
+      border-radius:10px 10px 0px 0px;
       text-align:center;
       text-decoration:none;
 

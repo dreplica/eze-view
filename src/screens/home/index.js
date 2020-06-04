@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <Container>
             {
-                items.map((phone)=><Phone />)
+                items.map((phone, ind) => <Phone key={ind}/>)
             }
       </Container>
   );

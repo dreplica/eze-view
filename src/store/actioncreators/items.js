@@ -4,13 +4,15 @@ import mixData from "../../lib/mixData"
 
 
 export const fetchData = (url = "") => (dispatch) => async () => {
+    console.log("hofa")
     dispatch({ type: 'Loading' })
     try {
-        const result = await (await Axios.get(`${url ?? 'http://localhost/3000'}`)).data
+        console.log("bread")
+        const result = await Axios.get(`http://localhost/3000/${url}`).data
         const arrange = arrangeData(result)
         dispatch({ type: 'Fetch_data', payload: mixData(arrange) })
     } catch (error) {
-        dispatch({ type: "Error" })
+        // dispatch({ type: "Error" })
     }
 }
 

@@ -20,6 +20,7 @@ const ItemsReducer = (state = initialState, action=initialAction) => {
                 error:{error:"",check:false}
             }
         case 'Loading':
+            console.log("i got fired up")
             return {
                 ...state,
                 loading:true
@@ -32,7 +33,8 @@ const ItemsReducer = (state = initialState, action=initialAction) => {
         case 'Error':
             return {
                 ...state,
-                error:{error:action.payload,check:true}
+                error: { error: action.payload, check: true },
+                loading:false,
             }
             
     

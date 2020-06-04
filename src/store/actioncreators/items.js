@@ -1,13 +1,24 @@
 import Axios from "axios"
+import arrangeData from "../../lib/arrangeData"
+import mixData from "../../lib/mixData"
 
 
-export const appStarted = () => (dispatch) => async () => {
-    dispatch({type:'Loading'})
+export const appStarted = (url = "") => (dispatch) => async () => {
+    dispatch({ type: 'Loading' })
     try {
-        const result = await (await Axios.get('http://localhost/3000')).data
-        
-
+        const result = await (await Axios.get(`${url ?? 'http://localhost/3000'}`)).data
+        const arrange = arrangeData(result)
+        dispatch({ type: 'Fetch_data', payload: mixData(arrange) })
     } catch (error) {
-        dispatch({type:"Error"})
+        dispatch({ type: "Error" })
+    }
+}
+
+export const sorting = (payload={sort:"",size:""}) => (dispatch) => {
+    dispatch({ type: 'Loading' })
+    try {
+        dispatch({ type: 'Sorting', payload })
+    } catch (error) {
+        dispatch({ type: "Error" }) 
     }
 }

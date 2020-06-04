@@ -1,5 +1,6 @@
 const initialState = {
     currentData: [],
+    filter:{sort:"",size:""},
     loading: false,
     error:{error:"",check:false}
 }
@@ -22,6 +23,11 @@ const ItemsReducer = (state = initialState, action=initialAction) => {
             return {
                 ...state,
                 loading:true
+            }
+        case 'Sorting':
+            return {
+                ...state,
+                filter:{sort:action.payload.sort,size:action.payload.size}
             }
         case 'Error':
             return {

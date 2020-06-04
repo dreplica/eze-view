@@ -1,5 +1,6 @@
 export default function (data) {
-    const length = data.phone.length;
+    const copyData = JSON.parse(JSON.stringify(data))
+    const length = copyData.phone.length;
 
     const array = Array.from({ length }, (val, ind) => ind)
 
@@ -9,5 +10,6 @@ export default function (data) {
 
     const set = new Set([...divisorFirst, ...divisorSecond, ...divisorFinal])
 
-    return [...set].map((phones) => data.phone[phones])
+    copyData.phone = [...set].map((phones) => data.phone[phones])
+    return copyData;
 }

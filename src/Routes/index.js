@@ -8,7 +8,6 @@ import { Container, Content } from './style';
 export default function Routes() {
 	return (
     <Router>
-      <h1>Load Phones</h1>
 			<Screens.Header />
 			<Container>
 				<Category />

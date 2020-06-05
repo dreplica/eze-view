@@ -19,9 +19,9 @@ export const Price = styled.p`
     top:0px;
     left:0px;
     font-weight:bold;
-    background-color:rgba(0,0,0,0.5);
+    background-color:rgba(250,250,250,1);
     width:auto;
-    color:white;
+    color:black;
     padding:0px 10px 4px 10px;
 `
 

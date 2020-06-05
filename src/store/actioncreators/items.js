@@ -1,13 +1,12 @@
 import Axios from "axios"
-import arrangeData from "../../lib/arrangeData"
 import mixData from "../../lib/mixData"
 
 
-export const fetchData = (url = "") => async (dispatch) => {
+export const fetchData = (url = "", { sort, size }) => async (dispatch) => {
     dispatch({ type: 'Loading' })
     try {
         console.log("bread")
-        const result = await Axios.get(`http://localhost:3000/${url}`)
+        const result = await Axios.get(`http://localhost:3000/${url}&sort=${sort}&size=${sort}`)
         dispatch({ type: 'Fetch_data', payload: mixData(result.data) })
     } catch (error) {
         console.log(error)
@@ -24,17 +23,17 @@ export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
     }
 }
 
-export const search = (url = "") => async (dispatch) => {
+export const search = (search = "", { sort, size }) => async (dispatch) => {
 
-    if (url === " ") {
+    if (search === " ") {
         return;
     }
 
     dispatch({ type: 'Loading' })
     try {
-        const result = await (await Axios.get(url)).data
-        const arrange = arrangeData(result)
-        dispatch({ type: 'Fetch_data', payload: mixData(arrange) })
+        const result = await Axios.post(`http://localhost:3000/search`, { search, size, sort }).data
+        //watch out, if user provides filter, no need to mix data
+        dispatch({ type: 'Fetch_data', payload: mixData(result.data) })
     } catch (error) {
         dispatch({ type: "Error" })
     }

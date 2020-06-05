@@ -5,7 +5,7 @@ import { Container, Price, Text, Image, Button } from './style';
 export default function Phone() {
 	return (
 		<Container>
-			<Price>$500</Price>
+			<Price>$500 /A1</Price>
 			<Image src="/assets/one.jpg" alt="phone" />
 			<Text style={{fontWeight:'bolder'}}>iPhone 5s</Text>
 			<Text>Unlocked | 256GB</Text>

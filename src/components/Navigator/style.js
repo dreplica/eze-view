@@ -15,6 +15,7 @@ export const Container = styled.div`
       padding-top:6px ;
       padding-bottom:5px ;
       color:white;
+      text-transform:capitalize;
       border-radius:10px 10px 0px 0px;
       text-align:center;
       text-decoration:none;

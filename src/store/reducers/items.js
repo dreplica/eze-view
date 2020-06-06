@@ -3,6 +3,7 @@ import { LOADING, ERROR, FETCH, PAGING, SORTING } from "../actioncreators/action
 const initialState = {
     currentData: [],
     filter: { sort: -1, size: "" },
+    currentUrl: ``,
     pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
     loading: false,
     error: { error: "", check: false }
@@ -16,6 +17,7 @@ const initialAction = {
 const ItemsReducer = (state = initialState, action = initialAction) => {
     switch (action.type) {
         case FETCH:
+            console.log("url follor",action.url)
             return {
                 ...state,
                 currentData: action.payload.result,

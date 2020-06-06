@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 import Sales from '../../components/sales';
 import { fetchData } from '../../store/actioncreators/items';
 
-function BuyScreen({ fetchData }) {
+function BuyScreen({ fetchData, filter}) {
     
     useEffect(() => {
         //here it would send the first request for home
-        fetchData("buy?page=1&limit=24")
+        fetchData("buy?page=1&limit=24",filter)
     }, [])
 
     return (<Sales />);
 }
 
-export default connect(null, { fetchData })(BuyScreen)
+const mapStateToProps = ({ ItemsReducer }) => ({
+    filter: ItemsReducer.filter
+})
+
+export default connect(mapStateToProps, { fetchData })(BuyScreen)

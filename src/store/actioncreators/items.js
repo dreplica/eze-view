@@ -7,14 +7,15 @@ import {
 } from './actions'
 
 
-export const fetchData = (url = "", sort = "", size = "") => async dispatch => {
+export const fetchData = (url = "", {sort = "", size = ""}) => async dispatch => {
     dispatch(load)
     try {
-        const result = await Axios.get(`http://localhost:3000/${url}`)
+        const result = await Axios.get(`http://localhost:3000/${url}&filter=${sort},${size}`)
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
         }
-        dispatch(incomingResult(result.data), url)
+        console.log("this is the url",url)
+        dispatch(incomingResult(result.data, url))
     } catch (err) {
         console.log(err)
         dispatch(error)
@@ -22,7 +23,6 @@ export const fetchData = (url = "", sort = "", size = "") => async dispatch => {
 }
 
 export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
-    load()
     try {
         dispatch(sortFilter(payload))
     } catch (err) {

@@ -1,6 +1,7 @@
 const initialState = {
     currentData: [],
     filter: { sort: "", size: "" },
+    pagination: { previous: {}, forward: {}},
     loading: false,
     error: { error: "", check: false }
 }
@@ -16,7 +17,8 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
             console.log("hafa e enter", action.payload)
             return {
                 ...state,
-                currentData: action.payload,
+                currentData: action.payload.result,
+                pagination:{previous:action.payload.previous,forward:action.payload.forward},
                 loading: false,
                 error: { error: "", check: false }
             }

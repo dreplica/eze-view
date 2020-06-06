@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Screens from '../screens';
@@ -8,7 +9,6 @@ import Navigate from '../components/Navigator';
 import LoadPhones from '../components/loadphones';
 import Spinner from '../components/spinner';
 import { Container, Content } from './style';
-import { connect } from 'react-redux';
 
 function Routes(props) {
 
@@ -22,10 +22,10 @@ function Routes(props) {
 				<Content>
 					<Navigate />
 					<Switch>
-						<Route exact path="/" component={Screens.Sale} />
-						<Route path="/buy" component={Screens.Home} />
-						<Route path="/sell" component={Screens.Home} />
-						{/* <Route path="/search/:id" component={Screens.Search} /> */}
+						<Route exact path="/" component={Screens.Screens.HomeScreen} />
+						<Route path="/buy" component={Screens.Screens.BuyScreen} />
+						<Route path="/sell" component={Screens.Screens.SellScreen} />
+						<Route path="/search" component={Screens.Screens.SearchScreen} />
 					</Switch>
 					<Pagination />
 					{/* <Footer /> */}

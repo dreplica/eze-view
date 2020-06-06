@@ -2,10 +2,10 @@ import React from 'react';
 
 import {Container,Image} from './style'
 
-export default function Spinner({image}) {
+export default function Spinner() {
   return (
       <Container>
-      <Image src={image} alt='activityIndicator'/>
+      <Image src='./assets/spinner.gif' alt='activityIndicator'/>
     </Container>
   );
 }

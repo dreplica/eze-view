@@ -1,21 +1,21 @@
 import Axios from "axios"
 import mixData from "../../lib/mixData"
 
-export const load = () => dispatch => dispatch({ type: "Loading" })
+export const load = { type: "Loading" }
 
-export const error = () => dispatch => dispatch({ type: "Error" })
+export const error ={ type: "Error" }
 
-export const result = (payload) => dispatch => dispatch({ type: 'Fetch_data', payload })
+export const incomingResult = (payload) =>({ type: 'Fetch_data', payload })
 
-export const fetchData = (url = "", { sort, size }) => async (dispatch) => {
-    load()
+
+export const fetchData =   (url = "",sort="-1", size="" ) =>async  dispatch =>{
+    dispatch(load)
     try {
-        console.log("bread")
-        const result = await Axios.get(`http://localhost:3000/${url}?sort=${sort}&size=${sort}`)
-        result(mixData(result.data))
-    } catch (error) {
-        console.log(error)
-        error()
+        const result = await Axios.get(`http://localhost:3000/${url}`)
+        dispatch(incomingResult(result.data))
+    } catch (err) {
+        console.log(err)
+        dispatch(error)
     }
 }
 

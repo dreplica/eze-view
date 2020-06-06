@@ -1,16 +1,24 @@
 export default function (data) {
+    console.log("started")
     const copyData = JSON.parse(JSON.stringify(data))
-    // const length = copyData.phone.length;
-    const length = copyData.length;
+    copyData.result = shuffle(copyData.result)
+    console.log("ended",copyData)
+    
+    return copyData
+}
 
-    const array = Array.from({ length }, (val, ind) => ind)
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
-    const divisorFirst = array.filter((val) => val % 5 === 0)
-    const divisorSecond = array.filter((val) => val % 2 === 0)
-    const divisorFinal = array.filter((val) => (val % 2 !== 0) && (val % 5 !== 0))
+    while (0 !== currentIndex) {
 
-    const set = new Set([...divisorFirst, ...divisorSecond, ...divisorFinal])
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-    // copyData.phone = [...set].map((phones) => data.phone[phones])
-    return  [...set].map((phones) => data[phones])
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
 }

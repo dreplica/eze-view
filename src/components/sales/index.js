@@ -11,9 +11,10 @@ import { connect } from 'react-redux';
      const Sales = ()=>products.map((phone, ind) => <Phone
          key={ind}
          name={phone.phone}
+         locked={phone.locked !== 'false' ? "Locked" : "Unlocked"}
          image={phone.phone.replace(/\s/g, "_").toLocaleLowerCase()}
          price={phone.price}
-         condition={phone.condition ? "Locked" : "Unlocked"}
+         condition={phone.condition}
          size={phone.size}
          sale={phone.sell.replace(/\w$/, "").toLocaleUpperCase()}
          memory={phone.memory}

@@ -1,33 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import LittleSpinner from '../spinner/littleSpinner';
-import { Container, Navigate,Text } from './style';
-export default function Pagination() {
-  const [state] = useState('See More');
-  const [loading,setLoad] = useState(false);
-  const [forward,setFow] = useState({page:"k"});
+import { connect } from 'react-redux';
+import { paginate } from '../../store/actioncreators/items';
+import { Container, Navigate, Text } from './style';
+
+function Pagination(props) {
+
   //here it updates, if theres a next,
   //it would update the previous button with the url
   //same for the next button
 
   const getRequest = () => {
-    
-    setLoad(true)
-    setTimeout(() => {
-      setLoad(false)
-      setFow({})
-    },2000)
+    const path = window.location.pathname
+    props.fetch(`${path}?page=${props.forward.page}&limit=${props.forward.limit}`, props.filter)
   }
 
   const outOfPage = <Text>...Oops Sorry You're out of Content...</Text>
 
-  if(!forward.page) return outOfPage
+  if (!props.forward.page) return outOfPage
 
   return <Container>
-    {loading
-      ? <LittleSpinner path='/assets/801.png' width="10"/>
-      : <Navigate onClick={getRequest}>{state}</Navigate>
+    {props.loading
+      ? <LittleSpinner path='/assets/801.png' width="10" />
+      : <Navigate onClick={getRequest}>See More</Navigate>
     }
-    
+
   </Container>;
 }
+
+const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
+  loading: EffectReducer.pageload,
+  forward: ItemsReducer.pagination.forward,
+  url: ItemsReducer.currentUrl,
+  filter: ItemsReducer.filter,
+})
+
+export default connect(mapStateToProps, { fetch: paginate })(Pagination)

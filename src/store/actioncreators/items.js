@@ -8,10 +8,14 @@ export const error ={ type: "Error" }
 export const incomingResult = (payload) =>({ type: 'Fetch_data', payload })
 
 
-export const fetchData =   (url = "",sort="-1", size="" ) =>async  dispatch =>{
+export const fetchData =   (url = "",sort="", size="" ) =>async  dispatch =>{
     dispatch(load)
     try {
         const result = await Axios.get(`http://localhost:3000/${url}`)
+        console.log("kmlkmk",!sort)
+        if (!sort) {   
+            return dispatch(incomingResult(mixData(result.data)))
+        }
         dispatch(incomingResult(result.data))
     } catch (err) {
         console.log(err)

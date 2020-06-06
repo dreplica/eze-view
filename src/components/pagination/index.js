@@ -11,6 +11,7 @@ export default function Pagination() {
   //same for the next button
 
   const getRequest = () => {
+    
     setLoad(true)
     setTimeout(() => {
       setLoad(false)

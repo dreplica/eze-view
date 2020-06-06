@@ -24,7 +24,7 @@ export const Price = styled.p`
     width:auto;
     color:whitesmoke;
     padding:0px 10px 4px 10px;
-`
+`;
 
 export const Text = styled.p`
     margin-bottom:5px;

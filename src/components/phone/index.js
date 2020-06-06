@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 
 import LittleSpinner from '../spinner/littleSpinner';
@@ -10,39 +10,29 @@ import {
 	Button,
 } from './style';
 
-export default function Phone({ name, price, locked, memory, sale, condition }) {
-	
-	const [state, setstate] = useState({
-		loading: true,
-		sale:""
-	})
+export default function Phone({ name, price, locked, image, memory, sale, condition }) {
+	const [state, setstate] = useState(true)
 
-	useEffect(() => {
-		setstate({
-			...state,
-			sale: sale.replace(/\w$/, "").toLocaleUpperCase(),
-			image: name.replace(/\s/g, "_").toLocaleLowerCase(),
-			lock: locked ? "Locked" : "Unlocked",
-			loading: false})
-	}, [])
+	const loader = () => {
+		Axios.get(`https://res.cloudinary.com/dyypxjmx9/image/upload/v1591388430/eze/${image}`)
+			.then(() => setstate(false))
+			.catch((e) => console.log("coulnt load"))
+	}
 
-	
-	// const loader = () => {
-	// 	Axios.get(`https://res.cloudinary.com/dyypxjmx9/image/upload/v1591388430/eze/${state.image}.png`)
-	// 		.then(() => setstate({...state,loading:false}))
-	// 	.catch((e)=>console.log("coulnt load"))
-	// }
-	
-	
+	loader()
+
+
 	return (
 		<Container>
 			<Price>${price} /{condition}</Price>
-			{ state.loading ?<LittleSpinner path='/assets/phonespin.gif' width='50%' />:
-			<Image src={`https://res.cloudinary.com/dyypxjmx9/image/upload/v1591388430/eze/${state.image}`} alt="phone" />
+			{
+				state
+					? <LittleSpinner path='./assets/phonespin.gif' width='50%' />
+					: <Image src={`https://res.cloudinary.com/dyypxjmx9/image/upload/v1591388430/eze/${image}`} alt="phone" />
 			}
 			<Text style={{ fontWeight: 'bolder' }}>{name}</Text>
-			<Text>{state.lock} | {memory}GB</Text>
-			<Button>{state.sale}</Button>
+			<Text>{locked} | {memory}GB</Text>
+			<Button>{sale}</Button>
 		</Container>
 	);
 }

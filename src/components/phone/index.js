@@ -23,7 +23,7 @@ export default function Phone({ name, price, locked, image, memory, sale, condit
 
 	return (
 		<Container>
-			<Price>${price} /{condition}</Price>
+			<Price>${price} - {condition}</Price>
 			{
 				state
 					? <LittleSpinner path='./assets/phonespin.gif' width='50%' />

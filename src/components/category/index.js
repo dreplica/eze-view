@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import categoryJson from '../../lib/category.json';
-import { Container, Filter, Phones, Context, Price, Item } from './style';
 import { connect } from 'react-redux';
 import { sorting, fetchData } from '../../store/actioncreators/items';
+import { Container, Filter, Phones, Context, Price, Item } from './style';
 
 function Category({ setSort, filter, fetch, url }) {
 
-    // const [sort,setsortVal] = useState(filter.sort)
     const [state] = useState([
         { sort: "Min", num: 1 },
         { sort: "Max", num: -1 }
@@ -17,28 +16,33 @@ function Category({ setSort, filter, fetch, url }) {
 
     const filterSort = (e) => {
         e.preventDefault();
-        const val = e.currentTarget.dataset.val
-        setSort({ ...filter, sort: parseInt(val) })
-        console.log("happpekjkomvv",url)
-        fetch(url, { sort: val, size: filter.size })
-        // setsortVal(val)
-        // alert(sort)
+        const sortVal = e.currentTarget.dataset.sort ?? filter.sort
+        const sizeVal = e.currentTarget.dataset.size ?? filter.size
+
+        setSort({ ...filter, sort: sortVal, size: sizeVal })
+
+        console.log("happpekjkomvv", url)
+        fetch(url, { sort: sortVal, size: sizeVal })
 
     }
-    const style = (item) => ({
-        backgroundColor: filter.sort === item ? "white" : "rgb(4, 12, 27)",
-        color: filter.sort === item ? "black" : 'white',
-        fontSize: filter.sort === item ? '1.2em' : "1em",
-        fontWeight: filter.sort === item ? 'bold' : "",
-    })
+
+    const style = (item) => {
+        const sortVal = parseInt(filter.sort)
+        return ({
+        backgroundColor: sortVal === item ? "white" : "rgb(4, 12, 27)",
+        color: sortVal === item ? "black" : 'white',
+        fontSize: sortVal === item ? '1.2em' : "1em",
+        fontWeight: sortVal === item ? 'bold' : "",
+    })}
 
     return (
         <Container>
             <Filter>Filter</Filter>
             <Context>Price :</Context>
             <Price>
-                {state.map((sort) => <Item style={style(sort.num)}
-                    data-val={sort.num}
+                {state.map((sort,ind) => <Item style={style(sort.num)}
+                    data-sort={sort.num}
+                    key={ind}
                     onClick={filterSort}>{sort.sort}</Item>)}
             </Price>
 
@@ -47,7 +51,11 @@ function Category({ setSort, filter, fetch, url }) {
                 {categoryJson.Storage.map((cat, ind) => <Link
                     key={ind}
                     to={`/${cat}`}
-                    style={{ textDecoration: filter.size === cat && "underline" }}
+                    data-size={cat}
+                    onClick={filterSort}
+                    style={{
+                        color: filter.size === cat && "red"
+                    }}
                 > + {cat}GB</Link>)}
             </Phones>
         </Container>

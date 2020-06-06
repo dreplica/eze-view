@@ -25,7 +25,7 @@ function Routes(props) {
 						<Route exact path="/" component={Screens.Screens.HomeScreen} />
 						<Route path="/buy" component={Screens.Screens.BuyScreen} />
 						<Route path="/sell" component={Screens.Screens.SellScreen} />
-						<Route path="/search" component={Screens.Screens.SearchScreen} />
+						<Route path="/search/:search" component={Screens.Screens.SearchScreen} />
 					</Switch>
 					<Pagination />
 					{/* <Footer /> */}

@@ -1,9 +1,10 @@
-import { LOADING, ERROR, FETCH, PAGING, SORTING } from "../actioncreators/actions"
+import { LOADING, ERROR, FETCH, PAGING, SORTING,SEARCH } from "../actioncreators/actions"
 
 const initialState = {
     currentData: [],
-    filter: { sort: -1, size: "" },
+    filter: { sort: "", size: "" },
     currentUrl: ``,
+    search:'',
     pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
     loading: false,
     error: { error: "", check: false }
@@ -44,6 +45,12 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
                 ...state,
                 loading: true
             }
+        case SEARCH:
+            return {
+                ...state,
+                search: action.payload
+            }
+        
         case SORTING:
             return {
                 ...state,

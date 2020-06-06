@@ -2,7 +2,7 @@ import React from 'react';
 
 import LittleSpinner from '../spinner/littleSpinner';
 import { connect } from 'react-redux';
-import { paginate } from '../../store/actioncreators/items';
+import { paginate,searchPhone} from '../../store/actioncreators/items';
 import { Container, Navigate, Text } from './style';
 
 function Pagination(props) {
@@ -13,6 +13,12 @@ function Pagination(props) {
 
   const getRequest = () => {
     const path = window.location.pathname
+    if (/search/i.test(path)) {
+      props.fetch(`search?page=${props.forward.page}&limit=${props.forward.limit}`,
+        { search:props.search, ...props.filter }
+      )
+      return
+    }
     props.fetch(`${path}?page=${props.forward.page}&limit=${props.forward.limit}`, props.filter)
   }
 
@@ -33,7 +39,8 @@ const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
   loading: EffectReducer.pageload,
   forward: ItemsReducer.pagination.forward,
   url: ItemsReducer.currentUrl,
+  search:ItemsReducer.search,
   filter: ItemsReducer.filter,
 })
 
-export default connect(mapStateToProps, { fetch: paginate })(Pagination)
+export default connect(mapStateToProps, { search:searchPhone, fetch: paginate })(Pagination)

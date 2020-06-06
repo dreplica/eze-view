@@ -6,7 +6,7 @@ export default function Header() {
   return (
       <Container>
           <Intro />
-          <Image src='/assets/four.png' alt='background'/>
+          {/* <Image src='/assets/four.png' alt='background'/> */}
     </Container>
   );
 }

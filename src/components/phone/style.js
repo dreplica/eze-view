@@ -11,6 +11,7 @@ export const Container = styled.div`
   color:white;
   justify-content:center;
   align-items:center;
+  border-radius:10px;
   background-color: rgba(10,24,46,1);
 `;
 
@@ -20,10 +21,10 @@ export const Price = styled.p`
     top:0px;
     left:0px;
     font-weight:bold;
-    background-color:rgba(0,0,0,0.4);
+    /* background-color:rgba(0,0,0,0.4); */
     width:auto;
     color:whitesmoke;
-    padding:0px 10px 4px 10px;
+    padding:0px 10px 4px 3px;
 `;
 
 export const Text = styled.p`

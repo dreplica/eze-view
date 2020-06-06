@@ -5,10 +5,8 @@ import Sales from '../../components/sales';
 import { fetchData } from '../../store/actioncreators/items';
 
 function BuyScreen({ fetchData, filter}) {
-    
     useEffect(() => {
-        //here it would send the first request for home
-        fetchData("buy?page=1&limit=24",filter)
+        fetchData("/buy?page=1&limit=24",filter)
     }, [])
 
     return (<Sales />);

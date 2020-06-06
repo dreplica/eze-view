@@ -3,14 +3,14 @@ import mixData from "../../lib/mixData"
 import {
     load, error, incomingResult,
     paginResult, sortFilter, pagingload,
-    PAGING_START, PAGING_STOP
+    PAGING_START, PAGING_STOP, searchValue
 } from './actions'
 
 
 export const fetchData = (url = "", {sort = "", size = ""}) => async dispatch => {
     dispatch(load)
     try {
-        const result = await Axios.get(`http://localhost:3000/${url}&filter=${sort},${size}`)
+        const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
         }
@@ -29,13 +29,19 @@ export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
     }
 }
 
-export const search = (search = "", { sort, size }) => async (dispatch) => {
-    if (search === " ") return;
-    load()
+export const searchPhone = (url = "", { sort, size,search }) => async (dispatch) => {
+    if ( search === " ") return;
+    console.log("hello") 
+
+    const value = search.split(",")
+    console.log("this is value",sort,search,size)
+    dispatch(load)
     try {
-        const result = await Axios.post(`http://localhost:3000/search`, { search, size, sort }).data
+        const result = await Axios.post(`http://localhost:3000/${url}`, { search:value, filter:`${sort},${size}` })
         //watch out, if user provides filter, no need to mix data
-        result(mixData(result.data))
+        dispatch(incomingResult(mixData(result.data), url))
+        dispatch(searchValue(search))
+        // result(mixData(result.data))
     } catch (err) {
         dispatch(error)
     }
@@ -69,7 +75,7 @@ export const paginate = (url, { sort=0, size="" }) => async dispatch => {
             dispatch(pagingload(PAGING_STOP))
             return
         }
-        dispatch(paginResult(result.data), url)
+        dispatch(paginResult(result.data, url))
         dispatch(pagingload(PAGING_STOP))
 
     } catch (err) {

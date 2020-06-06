@@ -14,7 +14,6 @@ export const fetchData = (url = "", {sort = "", size = ""}) => async dispatch =>
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
         }
-        console.log("this is the url",url)
         dispatch(incomingResult(result.data, url))
     } catch (err) {
         console.log(err)

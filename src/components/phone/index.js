@@ -21,7 +21,6 @@ export default function Phone({ name, price, locked, image, memory, sale, condit
 
 	loader()
 
-
 	return (
 		<Container>
 			<Price>${price} /{condition}</Price>

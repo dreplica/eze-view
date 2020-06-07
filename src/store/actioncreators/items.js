@@ -7,7 +7,7 @@ import {
 } from './actions'
 
 
-export const fetchData = (url = "", {sort = "", size = ""}) => async dispatch => {
+export const fetchData = (url = "", { sort = "", size = "" }) => async dispatch => {
     dispatch(load)
     try {
         const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
@@ -29,31 +29,32 @@ export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
     }
 }
 
-export const searchPhone = (url = "", { sort, size,search },paging=false) => async (dispatch) => {
+export const searchPhone = (url = "", { sort, size, search }, paging = false) => async (dispatch) => {
 
     const value = search.split(",").map((val) => val.trim())
-    console.log("this is value",sort,search,size)
+    console.log("this is value", sort, search, size)
     try {
         !paging ? dispatch(load) : dispatch(pagingload(PAGING_START))
-        const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search:value, filter:`${sort},${size}` })
+        const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search: value, filter: `${sort},${size}` })
         dispatch(searchValue(search))
 
-        if (!sort) {
+        if (!sort) { 
+            
             if (paging) {
                 dispatch(paginResult(mixData(result.data), url))
                 dispatch(pagingload(PAGING_STOP))
             }
             else dispatch(incomingResult(mixData(result.data), url))
-            
-            }
+
+        }
         if (!paging) return dispatch(incomingResult(result.data, url))
-        
+
         dispatch(paginResult(result.data, url))
         dispatch(pagingload(PAGING_STOP))
 
-        } catch (err) {
-            dispatch(error)
-        }
+    } catch (err) {
+        dispatch(error)
+    }
 }
 
 
@@ -73,7 +74,7 @@ export const updateSpreadsheet = () => dispatch => {
     }
 }
 
-export const paginate = (url, { sort=0, size="" },search=0) => async dispatch => {
+export const paginate = (url, { sort = 0, size = "" }, search = 0) => async dispatch => {
     try {
         dispatch(pagingload(PAGING_START))
         const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)

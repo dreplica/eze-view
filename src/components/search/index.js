@@ -14,8 +14,8 @@ function Search({filter,searchfunc}) {
 
     if (/\w/g.test(state)) {
 
-      searchfunc(`search?page=1&limit=12`, { search: state, ...filter })
-      history.push(`/search`)
+      // searchfunc(`search?page=1&limit=12`, { search: state, ...filter })
+      history.push(`/search/${state}`)
     };
 
   }

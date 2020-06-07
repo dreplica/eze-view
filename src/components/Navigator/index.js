@@ -20,7 +20,7 @@ export default function Navigate() {
         fontWeight: state.count === ind ?'bold':'',
         borderBottom: state.count === ind ? '2px solid white' : 'none',
         paddingBottom: state.count === ind ? '15px' : '5px',
-        background: state.count === ind ? 'rgba(200,200,200,0.3)' : '',
+        background: state.count === ind ? 'rgba(10,24,46,1)' : '',
     })
 
     return (

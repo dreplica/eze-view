@@ -6,9 +6,9 @@ export const Container = styled.div`
   align-content:center;
   height:400px;
   background:url('/assets/four.png')right/contain  no-repeat;
-
+  
   @media (max-width:850px){
-    background:linear-gradient(to bottom, rgba(34,0,0,0.6),rgba(0,0,0,0.1)),  url('/assets/four.png')right/contain  no-repeat;
+    background:linear-gradient(to bottom, rgba(4,12,27,0.6),rgba(4,12,27,0.1)),  url('/assets/four.png')right/contain  no-repeat;
     justify-content:center;
   }
 `;

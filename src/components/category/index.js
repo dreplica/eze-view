@@ -27,12 +27,10 @@ function Category(props) {
 
     const toggleFilter = () => {
         if (window.innerWidth > 850) {
-            // props.filterEffect('close')
             setWatch(false)
             return;
         }
         setWatch(true)
-        // props.filterEffect('open')
     }
 
     const filterSort = (e) => {
@@ -40,9 +38,14 @@ function Category(props) {
         const sortVal = e.currentTarget.dataset.sort ?? props.filter.sort
         const sizeVal = e.currentTarget.dataset.size ?? props.filter.size
 
+        const path = window.location.pathname
+
+        const limit = path.length === 1 ? 12 : 24
+        
         props.setSort({ ...props.filter, sort: sortVal, size: sizeVal })
 
-        props.fetch(props.url, { sort: sortVal, size: sizeVal })
+        //the case would be different for search
+        props.fetch(`${path}?page=1&limit=${limit}`, { sort: sortVal, size: sizeVal })
 
         props.displayer && props.filterEffect('close')
     }

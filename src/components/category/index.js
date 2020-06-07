@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import categoryJson from '../../lib/category.json';
 import { connect } from 'react-redux';
-import { sorting, fetchData, } from '../../store/actioncreators/items';
+import { sorting, fetchData, searchPhone, } from '../../store/actioncreators/items';
 import {displayFilter } from '../../store/actioncreators/effects';
 import { Container, Filter, Phones, Context, Price, Item } from './style';
 
@@ -34,6 +34,7 @@ function Category(props) {
     }
 
     const filterSort = (e) => {
+
         e.preventDefault();
         const sortVal = e.currentTarget.dataset.sort ?? props.filter.sort
         const sizeVal = e.currentTarget.dataset.size ?? props.filter.size
@@ -45,6 +46,14 @@ function Category(props) {
         props.setSort({ ...props.filter, sort: sortVal, size: sizeVal })
 
         //the case would be different for search
+        if (/search/i.test(path)) {
+            
+            props.search(`search?page=1&limit=12`,
+                { search: props.searchVal,  sort: sortVal, size: sizeVal  }
+            )
+            props.displayer && props.filterEffect('close')
+            return
+        }
         props.fetch(`${path}?page=1&limit=${limit}`, { sort: sortVal, size: sizeVal })
 
         props.displayer && props.filterEffect('close')
@@ -97,12 +106,15 @@ function Category(props) {
 const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
     filter: ItemsReducer.filter,
     url: ItemsReducer.currentUrl,
-    displayer:EffectReducer.categoryMenu
+    displayer: EffectReducer.categoryMenu,
+    forward:ItemsReducer.pagination.forward,
+    searchVal:ItemsReducer.search
 })
 
 
 export default connect(mapStateToProps, {
     setSort: sorting,
     fetch: fetchData,
-    filterEffect: displayFilter
+    filterEffect: displayFilter,
+    search:searchPhone
 })(Category)

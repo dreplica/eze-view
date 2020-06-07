@@ -38,7 +38,8 @@ export const searchPhone = (url = "", { sort, size, search }, paging = false) =>
         const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search: value, filter: `${sort},${size}` })
         dispatch(searchValue(search))
 
-        if (!sort) {
+        if (!sort) { 
+            
             if (paging) {
                 dispatch(paginResult(mixData(result.data), url))
                 dispatch(pagingload(PAGING_STOP))

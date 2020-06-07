@@ -5,9 +5,9 @@ import { Container, Filter } from './style'
 import { displayFilter } from '../../store/actioncreators/effects';
 import { connect } from 'react-redux';
 
- function TopIcons({setfilter}) {
+function TopIcons({ setfilter }) {
 
-    const [state, setbutton] = useState({button:false,cover:false})
+    const [state, setbutton] = useState({ button: false, cover: false })
 
     useEffect(() => {
         if (window.innerWidth < 850) {
@@ -21,29 +21,26 @@ import { connect } from 'react-redux';
 
     const showButton = () => {
         if (window.innerWidth < 850) {
-            setbutton({...state,button:true})
+            setbutton({ ...state, button: true })
+            setfilter('open')
             return
         }
+        setfilter('close')
         setbutton({ ...state, button: false })
     }
 
-     const showFilter = () => {
-
-         setbutton({ ...state, cover: true })
-     }
+    const showFilter = () => {
+        setfilter("open")
+        setbutton({ ...state, cover: true })
+    }
 
     return (
         <Container>
             {/* <Cover style={{}}/> */}
-            {state && <Filter onClick={()=>setfilter("open")} src='/assets/menu.svg' alt='filter' />}
+            {state.button && <Filter onClick={showFilter} src='/assets/menu.svg' alt='filter' />}
             <Loadphones />
         </Container>
     );
 }
-
-
-const mapStateTOProps = ({ EffectReducer }) => ({
-    
-})
 
 export default connect(null, { setfilter: displayFilter })(TopIcons)

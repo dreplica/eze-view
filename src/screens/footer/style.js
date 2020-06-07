@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Foot = styled.section`
-      background-color: rgb(4, 12, 27);
+      background-color: rgba(10, 20, 37,0.3);
+      border-top:1px solid whitesmoke;
+      margin-top:20px;
     padding:40px 0px;
 
 `

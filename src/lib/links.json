@@ -1,0 +1,22 @@
+[
+    {
+        "img": "./assets/fb.svg",
+        "name": "Facebook",
+        "link":"https: //facebook.com/adejo.david"
+    },
+    {
+        "img": "./assets/tw.svg",
+        "name": "Twitter",
+        "link":"https: //twitter.com/dreplica"
+    },
+    {
+        "img": "./assets/link.svg",
+        "name": "Instagram",
+        "link":"https: //instagram.com/dreplica"
+    },
+    {
+        "img": "./assets/ing.svg",
+        "name": "Instagram",
+        "link":"https: //instagram.com/dreplica"
+    }
+]

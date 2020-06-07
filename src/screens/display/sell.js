@@ -6,7 +6,6 @@ import { fetchData } from '../../store/actioncreators/items';
 
 function SellScreen({ fetchData,filter }) {
     useEffect(() => {
-        //here it would send the first request for home
         fetchData("/sell?page=1&limit=24",filter)
     }, [])
 

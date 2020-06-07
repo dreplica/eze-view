@@ -1,8 +1,8 @@
 import {
-    load,
-    error,
-    incomingResult
+    showfilter
 } from './actions'
 
 
-// export 
+export const displayFilter = (payload) => dispatch => {
+    dispatch(showfilter(payload))
+}

@@ -39,9 +39,11 @@ export const searchPhone = (url = "", { sort, size,search }) => async (dispatch)
     try {
         const result = await Axios.post(`http://localhost:3000/${url}`, { search:value, filter:`${sort},${size}` })
         //watch out, if user provides filter, no need to mix data
-        dispatch(incomingResult(mixData(result.data), url))
         dispatch(searchValue(search))
-        // result(mixData(result.data))
+         if (!sort) {
+            return dispatch(incomingResult(mixData(result.data), url))
+        }
+        return dispatch(incomingResult(result.data, url))
     } catch (err) {
         dispatch(error)
     }
@@ -66,10 +68,8 @@ export const updateSpreadsheet = () => dispatch => {
 
 export const paginate = (url, { sort=0, size="" }) => async dispatch => {
     try {
-        // dispatch(load)
         dispatch(pagingload(PAGING_START))
         const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)
-        console.log("new result coming in ",result)
         if (!sort) {
             dispatch(paginResult(mixData(result.data), url))
             dispatch(pagingload(PAGING_STOP))

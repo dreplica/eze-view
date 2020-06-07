@@ -18,7 +18,6 @@ const initialAction = {
 const ItemsReducer = (state = initialState, action = initialAction) => {
     switch (action.type) {
         case FETCH:
-            console.log("url follor",action.url)
             return {
                 ...state,
                 currentData: action.payload.result,

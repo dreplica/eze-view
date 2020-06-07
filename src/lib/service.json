@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Features",
+        "list": [
+            "Link Shortening",
+            "Brand Links",
+            "Analytics"
+        ]
+    },
+    {
+        "title": "Resources",
+        "list": [
+            "Blog",
+            "Developers",
+            "Support"
+        ]
+    },
+    {
+        "title": "Company",
+        "list": [
+            "About",
+            "Our Team",
+            "Careers",
+            "Contact"
+        ]
+    }
+]

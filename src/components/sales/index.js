@@ -5,7 +5,6 @@ import {Container} from './style'
 import { connect } from 'react-redux';
  function Sale({products}) {
     useEffect(() => {
-        console.log("prod",products)
     }, [products])
      
      const Sales = ()=>products.map((phone, ind) => <Phone

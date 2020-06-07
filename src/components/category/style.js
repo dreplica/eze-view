@@ -11,12 +11,36 @@ export const Container = styled.div`
   align-items:center;
   background-color: rgba(10,24,46,1);
 
+  @media (max-width:850px){
+    position:fixed;
+    overflow-Y:auto;
+    width:80%;
+    border:2px solid white;
+    border-radius:10px;
+    left:10%;
+    z-index:4;
+    top:15vh;
+    height:70vh;
+  }
+
 `;
 
 export const Filter = styled.h2`
     color:white;
+    display:flex;
+    justify-content:space-between;
     width:70%;
     margin:10px 0px;
+
+    a{
+        text-decoration:none;
+        color:grey;
+
+        :hover{
+            color:white;
+            transform:scale(1.2);
+        }
+    }
 `;
     
 export const Phones = styled.div`

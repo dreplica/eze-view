@@ -1,17 +1,18 @@
-import { PAGING_STOP, PAGING_START, CATEGORY,MENU } from "../actioncreators/actions"
+import { PAGING_STOP, PAGING_START,MENU, TOGGLE_FILTER } from "../actioncreators/actions"
 
 const initialState = {
-    categoryMenu: 'flex',
+    categoryMenu: 'none',
     Menu: 'none',
     pageload:false
 }
 
 const EffectReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CATEGORY:
+        case TOGGLE_FILTER:
+            const show = action.payload === 'open'?"flex":"none"
             return {
                 ...state,
-                categoryMenu:action.payload
+                categoryMenu:show
             }
         case MENU:
             return {

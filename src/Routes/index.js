@@ -6,16 +6,17 @@ import Screens from '../screens';
 import Category from '../components/category';
 import Pagination from '../components/pagination';
 import Navigate from '../components/Navigator';
-import LoadPhones from '../components/loadphones';
 import Spinner from '../components/spinner';
+import TopIcons from '../components/topIcons';
 import { Container, Content } from './style';
+import Footer from '../screens/footer';
 
 function Routes(props) {
 
 	return (
 		<Router>
 			{props.loading && <Spinner />}
-			<LoadPhones />
+			<TopIcons />
 			<Screens.Header />
 			<Container>
 				<Category />
@@ -28,9 +29,9 @@ function Routes(props) {
 						<Route path="/search/:search" component={Screens.Screens.SearchScreen} />
 					</Switch>
 					<Pagination />
-					{/* <Footer /> */}
 				</Content>
 			</Container>
+			<Footer />
 		</Router>
 	);
 }

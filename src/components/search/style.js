@@ -6,6 +6,19 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (max-width:850px){
+    flex-direction:column;
+
+	button{
+		width:80%;
+	}
+
+	input{
+		width:80%;
+		margin-bottom:10px;
+	}
+  }
 `;
 
 export const Input = styled.input`

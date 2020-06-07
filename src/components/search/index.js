@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { Container,Input,Button} from "./style";
+import { searchPhone } from '../../store/actioncreators/items';
+import { Container, Input, Button } from "./style";
 
-export default function Search() {
+function Search({filter,searchfunc}) {
+  const history = useHistory()
+  const [state, setstate] = useState("")
+
+  const makeSearch = (e) => {
+    e.preventDefault()
+
+    if (/\w/g.test(state)) {
+
+      searchfunc(`search?page=1&limit=12`, { search: state, ...filter })
+      history.push(`/search`)
+    };
+
+  }
+
   return (
-      <Container>
-          <Input type='search' placeholder=" Enter Search Term Eg:iphone Xs, A1, 128GB" />
-      <Button type='button'>SEARCH <span style={{ fontSize: 25 }}>&rarr;</span></Button>
+    <Container>
+
+      <Input
+        type='search'
+        onChange={(e) => setstate(e.currentTarget.value)}
+        placeholder=" Enter Search Term Eg:iphone Xs, A1, 128GB"
+      />
+      <Button type='button' onClick={makeSearch}>SEARCH <span style={{ fontSize: 25 }}>&rarr; </span></Button>
     </Container>
   );
 }
+
+const mapStateToProps = ({ ItemsReducer }) => ({
+  filter: ItemsReducer.filter
+})
+
+export default connect(mapStateToProps, { searchfunc: searchPhone })(Search)

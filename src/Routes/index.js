@@ -1,36 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Screens from '../screens';
 import Category from '../components/category';
 import Pagination from '../components/pagination';
 import Navigate from '../components/Navigator';
-import LoadPhones from '../components/loadphones';
 import Spinner from '../components/spinner';
+import TopIcons from '../components/topIcons';
 import { Container, Content } from './style';
-import { connect } from 'react-redux';
+import Footer from '../screens/footer';
 
 function Routes(props) {
 
 	return (
 		<Router>
 			{props.loading && <Spinner />}
-			<LoadPhones />
+			<TopIcons />
 			<Screens.Header />
 			<Container>
 				<Category />
 				<Content>
 					<Navigate />
 					<Switch>
-						<Route exact path="/" component={Screens.Home} />
-						<Route path="/buy" component={Screens.Home} />
-						<Route path="/sell" component={Screens.Home} />
-						{/* <Route path="/search/:id" component={Screens.Search} /> */}
+						<Route exact path="/" component={Screens.Screens.HomeScreen} />
+						<Route path="/buy" component={Screens.Screens.BuyScreen} />
+						<Route path="/sell" component={Screens.Screens.SellScreen} />
+						<Route path="/search/:search" component={Screens.Screens.SearchScreen} />
 					</Switch>
 					<Pagination />
-					{/* <Footer /> */}
 				</Content>
 			</Container>
+			<Footer />
 		</Router>
 	);
 }

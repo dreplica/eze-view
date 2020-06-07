@@ -5,8 +5,14 @@ export const Container = styled.div`
   margin-top:40px;
   justify-content:space-between;
   align-items:flex-start;
+
+  
 `;
 
 export const Content = styled.div`
   width:70%;
+
+  @media (max-width:850px){
+    width:100%;
+  }
 `;

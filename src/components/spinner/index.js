@@ -5,7 +5,7 @@ import {Container,Image} from './style'
 export default function Spinner() {
   return (
       <Container>
-          <Image src='/assets/spinner.gif' alt='activityIndicator'/>
+      <Image src='./assets/spinner.gif' alt='activityIndicator'/>
     </Container>
   );
 }

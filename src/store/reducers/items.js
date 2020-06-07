@@ -1,6 +1,11 @@
+import { LOADING, ERROR, FETCH, PAGING, SORTING,SEARCH } from "../actioncreators/actions"
+
 const initialState = {
     currentData: [],
     filter: { sort: "", size: "" },
+    currentUrl: ``,
+    search:'',
+    pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
     loading: false,
     error: { error: "", check: false }
 }
@@ -12,26 +17,45 @@ const initialAction = {
 
 const ItemsReducer = (state = initialState, action = initialAction) => {
     switch (action.type) {
-        case 'Fetch_data':
-            console.log("hafa e enter", action.payload)
+        case FETCH:
             return {
                 ...state,
-                currentData: action.payload,
+                currentData: action.payload.result,
+                pagination: { previous: action.payload.previous, forward: action.payload.forward },
                 loading: false,
+                currentUrl: action.url,
                 error: { error: "", check: false }
             }
-        case 'Loading':
-            console.log("i got fired up")
+
+        case PAGING:
+            const result = state.currentData
+            
+            return {
+                ...state,
+                currentData: [...result, ...action.payload.result],
+                pagination: { previous: action.payload.previous, forward: action.payload.forward },
+                currentUrl: action.url,
+                loading:false,
+                error: { error: "", check: false }
+            }
+
+        case LOADING:
             return {
                 ...state,
                 loading: true
             }
-        case 'Sorting':
+        case SEARCH:
+            return {
+                ...state,
+                search: action.payload
+            }
+        
+        case SORTING:
             return {
                 ...state,
                 filter: { sort: action.payload.sort, size: action.payload.size }
             }
-        case 'Error':
+        case ERROR:
             return {
                 ...state,
                 error: { error: action.payload, check: true },

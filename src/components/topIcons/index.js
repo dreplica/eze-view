@@ -22,10 +22,8 @@ function TopIcons({ setfilter }) {
     const showButton = () => {
         if (window.innerWidth < 850) {
             setbutton({ ...state, button: true })
-            setfilter('open')
             return
         }
-        setfilter('close')
         setbutton({ ...state, button: false })
     }
 
@@ -42,5 +40,10 @@ function TopIcons({ setfilter }) {
         </Container>
     );
 }
+
+
+const mapStateTOProps = ({ EffectReducer }) => ({
+
+})
 
 export default connect(null, { setfilter: displayFilter })(TopIcons)

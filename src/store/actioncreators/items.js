@@ -10,7 +10,7 @@ import {
 export const fetchData = (url = "", {sort = "", size = ""}) => async dispatch => {
     dispatch(load)
     try {
-        const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)
+        const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
         }
@@ -29,24 +29,31 @@ export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
     }
 }
 
-export const searchPhone = (url = "", { sort, size,search }) => async (dispatch) => {
-    if ( search === " ") return;
-    console.log("hello") 
+export const searchPhone = (url = "", { sort, size,search },paging=false) => async (dispatch) => {
 
-    const value = search.split(",")
+    const value = search.split(",").map((val) => val.trim())
     console.log("this is value",sort,search,size)
-    dispatch(load)
     try {
-        const result = await Axios.post(`http://localhost:3000/${url}`, { search:value, filter:`${sort},${size}` })
-        //watch out, if user provides filter, no need to mix data
+        !paging ? dispatch(load) : dispatch(pagingload(PAGING_START))
+        const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search:value, filter:`${sort},${size}` })
         dispatch(searchValue(search))
-         if (!sort) {
-            return dispatch(incomingResult(mixData(result.data), url))
+
+        if (!sort) {
+            if (paging) {
+                dispatch(paginResult(mixData(result.data), url))
+                dispatch(pagingload(PAGING_STOP))
+            }
+            else dispatch(incomingResult(mixData(result.data), url))
+            
+            }
+        if (!paging) return dispatch(incomingResult(result.data, url))
+        
+        dispatch(paginResult(result.data, url))
+        dispatch(pagingload(PAGING_STOP))
+
+        } catch (err) {
+            dispatch(error)
         }
-        return dispatch(incomingResult(result.data, url))
-    } catch (err) {
-        dispatch(error)
-    }
 }
 
 
@@ -54,9 +61,9 @@ export const updateSpreadsheet = () => dispatch => {
     try {
         const url = `?page=1&limit=12`
         dispatch(load)
-        Axios.get(`http://localhost:3000/update`)
+        Axios.get(`https://eze-test.herokuapp.com/update`)
             .then(async _ => {
-                const result = await Axios.get(`http://localhost:3000/${url}`)
+                const result = await Axios.get(`https://eze-test.herokuapp.com/${url}`)
                 dispatch(incomingResult(mixData(result.data), url))
             })
             .catch((err) => dispatch(error))
@@ -66,7 +73,7 @@ export const updateSpreadsheet = () => dispatch => {
     }
 }
 
-export const paginate = (url, { sort=0, size="" }) => async dispatch => {
+export const paginate = (url, { sort=0, size="" },search=0) => async dispatch => {
     try {
         dispatch(pagingload(PAGING_START))
         const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)

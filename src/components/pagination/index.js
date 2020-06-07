@@ -13,9 +13,10 @@ function Pagination(props) {
 
   const getRequest = () => {
     const path = window.location.pathname
+    alert(props)
     if (/search/i.test(path)) {
-      props.fetch(`search?page=${props.forward.page}&limit=${props.forward.limit}`,
-        { search:props.search, ...props.filter }
+      props.search(`search?page=${props.forward.page}&limit=${props.forward.limit}`,
+        { search:props.searchVal, ...props.filter },true
       )
       return
     }
@@ -39,7 +40,7 @@ const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
   loading: EffectReducer.pageload,
   forward: ItemsReducer.pagination.forward,
   url: ItemsReducer.currentUrl,
-  search:ItemsReducer.search,
+  searchVal:ItemsReducer.search,
   filter: ItemsReducer.filter,
 })
 

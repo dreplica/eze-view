@@ -1,16 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ezesale
 
-## Eze Sale App
+https://ezesale.herokuapp.com
 
-The project is built using creact-React-App
+THis app is built using create react app
 
-### `yarn start on local machine or visit page at https://ezesale.herokuapp.com/`
+## It has some features 
+- Load phones: located at the top right corner, it refetches data and updates from the spreadsheet file specified
+- filter: responsive and shrinks at about 850px, 
+   # contains :
+     - max and min option
+     - storagesize option with varying sizes
 
-#packages used include 
+- has a navigator pan, user can select home screen, sell screen and buy screen
+- contains a page that changes as navigator's are selected
+- includes a pagination button "see more", it fetches more data on click
 
-- Styled components for styling
-- React-router-dom for routing on SPA
--
+ 
+    
+## Packages used include:
+    Redux - used to manage state across application 
+    Styled-components - used for styling like sass
+    React-router-dom - used for routing and navigation management 
+    React-redux - connects react to redux
 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+ 

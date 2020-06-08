@@ -6,7 +6,7 @@ import { fetchData } from '../../store/actioncreators/items';
 
 function BuyScreen({ fetchData, filter}) {
     useEffect(() => {
-        fetchData("/buy?page=1&limit=24",{sort:"",size:""})
+        fetchData("/buy?page=1&limit=24",{sort:filter.sort,size:""})
     }, [])
 
     return (<Sales />);

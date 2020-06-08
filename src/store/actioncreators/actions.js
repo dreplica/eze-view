@@ -4,6 +4,8 @@ export const SORTING = 'SORTING'
 export const MENU = 'MENU'
 export const CATEGORY = 'CATEGORY'
 export const SEARCH = 'SEARCHING'
+export const SEARCHING = 'SEARCHING'
+export const NOTSEARCHING = 'NOTSEARCHING'
 export const FETCH = 'FETCH_DATA'
 export const PAGING = 'PAGING_RESULT'
 export const PAGING_START = 'PAGING_START'
@@ -15,6 +17,10 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER'
 export const load = { type: LOADING }
 
 export const error = { type: ERROR }
+
+export const removeCat = { type: SEARCHING }
+
+export const addCat = {type: NOTSEARCHING}
 
 export const showfilter =(payload)=> ({type:TOGGLE_FILTER,payload})
 

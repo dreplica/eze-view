@@ -4,7 +4,8 @@ const initialState = {
     currentData: [],
     filter: { sort: "", size: "" },
     currentUrl: ``,
-    search:'',
+    search: '',
+    categoryView: true,
     pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
     loading: false,
     error: { error: "", check: false }
@@ -23,6 +24,7 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
                 currentData: action.payload.result,
                 pagination: { previous: action.payload.previous, forward: action.payload.forward },
                 loading: false,
+                categoryView:true,
                 currentUrl: action.url,
                 error: { error: "", check: false }
             }
@@ -47,7 +49,8 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
         case SEARCH:
             return {
                 ...state,
-                search: action.payload
+                search: action.payload,
+                categoryView:false,
             }
         
         case SORTING:

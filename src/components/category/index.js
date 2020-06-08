@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import categoryJson from '../../lib/category.json';
@@ -23,7 +23,7 @@ function Category(props) {
         return () => {
             window.removeEventListener('resize', toggleFilter, false)
         }
-    }, [window.innerWidth])
+    }, [window.innerWidth,props.filter])
 
     const toggleFilter = () => {
         if (window.innerWidth > 850) {
@@ -41,11 +41,10 @@ function Category(props) {
 
         const path = window.location.pathname
 
-        const limit = path.length === 1 ? 12 : 24
+        const limit = (path.length === 1 || /search/i.test(path)) ? 12 : 24
         
         props.setSort({ ...props.filter, sort: sortVal, size: sizeVal })
 
-        //the case would be different for search
         if (/search/i.test(path)) {
             
             props.search(`search?page=1&limit=12`,
@@ -87,8 +86,10 @@ function Category(props) {
                     onClick={filterSort}>{sort.sort}</Item>)}
             </Price>
 
-            <Context>Storage :</Context>
-            <Phones>
+            {
+                props.categoryView && (<Fragment>
+                <Context>Storage :</Context>
+             <Phones>
                 {categoryJson.Storage.map((cat, ind) => <Link
                     key={ind}
                     to={`/${cat}`}
@@ -98,7 +99,9 @@ function Category(props) {
                         color: props.filter.size === cat && "red"
                     }}
                 > + {cat}GB</Link>)}
-            </Phones>
+                </Phones>
+                </Fragment>)
+            }
         </Container>
     );
 }
@@ -106,6 +109,7 @@ function Category(props) {
 const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
     filter: ItemsReducer.filter,
     url: ItemsReducer.currentUrl,
+    categoryView: EffectReducer.categoryView,
     displayer: EffectReducer.categoryMenu,
     forward:ItemsReducer.pagination.forward,
     searchVal:ItemsReducer.search

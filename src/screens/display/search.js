@@ -9,7 +9,7 @@ function SearchScreen({ searchfunc, products,filter }) {
     const {search} = useParams()
   useEffect(() => {
       console.log("entering")
-      searchfunc(`search?page=1&limit=12`, { search: search, ...filter })
+      searchfunc(`search?page=1&limit=12`, { search: search, sort:"",size:"" })
     }, [search])
     return (<Sales />);
 }

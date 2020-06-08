@@ -1,9 +1,10 @@
-import { PAGING_STOP, PAGING_START,MENU, TOGGLE_FILTER } from "../actioncreators/actions"
+import { PAGING_STOP, SEARCHING, PAGING_START,MENU, TOGGLE_FILTER, NOTSEARCHING } from "../actioncreators/actions"
 
 const initialState = {
     categoryMenu: 'none',
     Menu: 'none',
-    pageload:false
+    pageload: false,
+    categoryView: true,
 }
 
 const EffectReducer = (state = initialState, action) => {
@@ -28,6 +29,16 @@ const EffectReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pageload:false
+            }
+        case SEARCHING:
+            return {
+                ...state,
+                categoryView:false
+            }
+        case NOTSEARCHING:
+            return {
+                ...state,
+                categoryView:true
             }
         default:
             return state;

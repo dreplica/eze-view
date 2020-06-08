@@ -6,3 +6,4 @@ import {
 export const displayFilter = (payload) => dispatch => {
     dispatch(showfilter(payload))
 }
+

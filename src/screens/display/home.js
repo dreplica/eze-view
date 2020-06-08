@@ -7,7 +7,7 @@ import { fetchData } from '../../store/actioncreators/items';
 function HomeScreen({fetchData,filter}) {
     useEffect(() => {
       
-        fetchData("?page=1&limit=12",filter)
+      fetchData("?page=1&limit=12", { sort: "", size: "" })
     }, [])
 
     return (<Sales />);

@@ -12,6 +12,8 @@ export const fetchData = (url = "", { sort = "", size = "" }) => async dispatch 
     dispatch(addCat)
     try {
         const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
+        dispatch(sorting({ sort: sort, size: size }))
+
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
         }
@@ -39,7 +41,8 @@ export const searchPhone = (url = "", { sort, size, search }, paging = false) =>
 
         const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search: value, filter: `${sort},${size}` })
         dispatch(searchValue(search))
-
+        dispatch(sorting({ sort: sort, size: size }))
+        
         if (!sort) { 
             
             if (paging) {
@@ -80,6 +83,8 @@ export const paginate = (url, { sort = 0, size = "" }, search = 0) => async disp
     try {
         dispatch(pagingload(PAGING_START))
         const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
+        dispatch(sorting({ sort: sort, size: size }))
+        
         if (!sort) {
             dispatch(paginResult(mixData(result.data), url))
             dispatch(pagingload(PAGING_STOP))

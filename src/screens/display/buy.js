@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Sales from '../../components/sales';
-import { fetchData } from '../../store/actioncreators/items';
+import { fetchData,sorting } from '../../store/actioncreators/items';
 
-function BuyScreen({ fetchData, filter}) {
+function BuyScreen({ fetchData, filter,sorting}) {
     useEffect(() => {
-        fetchData("/buy?page=1&limit=24",{sort:filter.sort,size:""})
+        // sorting({sort:"",size:""})
+        fetchData("/buy?page=1&limit=24", { sort: "", size: "" })
     }, [])
 
     return (<Sales />);
@@ -16,4 +17,4 @@ const mapStateToProps = ({ ItemsReducer }) => ({
     filter: ItemsReducer.filter
 })
 
-export default connect(mapStateToProps, { fetchData })(BuyScreen)
+export default connect(mapStateToProps, { fetchData,sorting })(BuyScreen)

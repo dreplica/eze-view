@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Sales from '../../components/sales';
-import { searchPhone } from '../../store/actioncreators/items';
+import { searchPhone,sorting } from '../../store/actioncreators/items';
 import { useParams } from 'react-router-dom';
 
-function SearchScreen({ searchfunc, products,filter }) {
+function SearchScreen({ searchfunc, products,filter ,sorting}) {
     const {search} = useParams()
   useEffect(() => {
-      console.log("entering")
-      searchfunc(`search?page=1&limit=12`, { search: search, sort:filter.sort,size:"" })
+      searchfunc(`search?page=1&limit=12`, { search: search, sort: "", size: "" })
+    //   sorting({ sort: "", size: "" })
     }, [search])
     return (<Sales />);
 }
@@ -19,4 +19,4 @@ const mapStateToProps = ({ ItemsReducer }) => ({
     product:ItemsReducer.currentData
 })
 
-export default connect(mapStateToProps, { searchfunc:searchPhone })(SearchScreen)
+export default connect(mapStateToProps, { searchfunc:searchPhone,sorting })(SearchScreen)

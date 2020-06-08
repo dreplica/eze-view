@@ -77,7 +77,7 @@ export const updateSpreadsheet = () => dispatch => {
 export const paginate = (url, { sort = 0, size = "" }, search = 0) => async dispatch => {
     try {
         dispatch(pagingload(PAGING_START))
-        const result = await Axios.get(`http://localhost:3000${url}&filter=${sort},${size}`)
+        const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
         if (!sort) {
             dispatch(paginResult(mixData(result.data), url))
             dispatch(pagingload(PAGING_STOP))

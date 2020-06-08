@@ -95,9 +95,6 @@ function Category(props) {
                     to={`/${cat}`}
                     data-size={cat}
                     onClick={filterSort}
-                    style={{
-                        color: props.filter.size === cat && "red"
-                    }}
                 > + {cat}GB</Link>)}
                 </Phones>
                 </Fragment>)

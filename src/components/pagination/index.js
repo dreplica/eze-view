@@ -15,7 +15,7 @@ function Pagination(props) {
     const path = window.location.pathname
     if (/search/i.test(path)) {
       props.search(`search?page=${props.forward.page}&limit=${props.forward.limit}`,
-        { search:props.searchVal, ...props.filter },true
+        { search:props.searchVal, sort:props.filter.sort,size:"" },true
       )
       return
     }

@@ -13,7 +13,7 @@ THis app is built using create react app
 
 - has a navigator pan, user can select home screen, sell screen and buy screen
 - contains a page that changes as navigator's are selected
-- includes a pagination button "see more", it fetches more data on click
+- includes a pagination button "see more" at the page bottom, above footer.  it fetches more data on click
 
  
     

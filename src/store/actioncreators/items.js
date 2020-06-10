@@ -1,18 +1,17 @@
 import Axios from "axios"
 import mixData from "../../lib/mixData"
 import {
-    load, error, incomingResult, removeCat, addCat,
-    paginResult, sortFilter, pagingload,
-    PAGING_START, PAGING_STOP, searchValue
+    load, error, incomingResult, addCat,
 } from './actions'
 
 
-export const fetchData = (url = "", { sort = "", size = "" }) => async dispatch => {
+export const fetchData = ({ sort="", storage="", phone="iphone", sell="", page=1}) => async dispatch => {
     dispatch(load)
     dispatch(addCat)
     try {
-        const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
-        dispatch(sorting({ sort: sort, size: size }))
+        const result = await Axios.get(`http://localhost:3000/api?limit=9&page=${page}&size=${storage}&sort=${sort},&phone=${phone}&sell=${sell}`)
+
+        dispatch(sorting({ sort:sort, storage:storage, phone:phone, sell:sell, page:page}))
 
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data), url))
@@ -24,52 +23,13 @@ export const fetchData = (url = "", { sort = "", size = "" }) => async dispatch 
     }
 }
 
-export const sorting = (payload = { sort: "", size: "" }) => (dispatch) => {
-    try {
-        dispatch(sortFilter(payload))
-    } catch (err) {
-        dispatch(error)
-    }
-}
-
-export const searchPhone = (url = "", { sort, size, search }, paging = false) => async (dispatch) => {
-
-    const value = search.split(",").map((val) => val.trim())
-    dispatch(removeCat)
-    try {
-        !paging ? dispatch(load) : dispatch(pagingload(PAGING_START))
-
-        const result = await Axios.post(`https://eze-test.herokuapp.com/${url}`, { search: value, filter: `${sort},${size}` })
-        dispatch(searchValue(search))
-        dispatch(sorting({ sort: sort, size: size }))
-        
-        if (!sort) { 
-            
-            if (paging) {
-                dispatch(paginResult(mixData(result.data), url))
-                dispatch(pagingload(PAGING_STOP))
-            }
-            else dispatch(incomingResult(mixData(result.data), url))
-
-        }
-        if (!paging) return dispatch(incomingResult(result.data, url))
-
-        dispatch(paginResult(result.data, url))
-        dispatch(pagingload(PAGING_STOP))
-
-    } catch (err) {
-        dispatch(error)
-    }
-}
-
-
 export const updateSpreadsheet = () => dispatch => {
     try {
         const url = `?page=1&limit=12`
         dispatch(load)
-        Axios.get(`https://eze-test.herokuapp.com/update`)
+        Axios.get(`http://localhost:3000/api`)
             .then(async _ => {
-                const result = await Axios.get(`https://eze-test.herokuapp.com/${url}`)
+                const result = await Axios.get(`http://localhost:3000/api?limit=6&page=1`)
                 dispatch(incomingResult(mixData(result.data), url))
             })
             .catch((err) => dispatch(error))
@@ -79,21 +39,22 @@ export const updateSpreadsheet = () => dispatch => {
     }
 }
 
-export const paginate = (url, { sort = 0, size = "" }, search = 0) => async dispatch => {
-    try {
-        dispatch(pagingload(PAGING_START))
-        const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
-        dispatch(sorting({ sort: sort, size: size }))
-        
-        if (!sort) {
-            dispatch(paginResult(mixData(result.data), url))
-            dispatch(pagingload(PAGING_STOP))
-            return
-        }
-        dispatch(paginResult(result.data, url))
-        dispatch(pagingload(PAGING_STOP))
 
-    } catch (err) {
-        dispatch(error)
-    }
-}
+// export const paginate = (url, { sort = 0, size = "" }, search = 0) => async dispatch => {
+//     try {
+//         dispatch(pagingload(PAGING_START))
+//         const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
+//         dispatch(sorting({ sort: sort, size: size }))
+        
+//         if (!sort) {
+//             dispatch(paginResult(mixData(result.data), url))
+//             dispatch(pagingload(PAGING_STOP))
+//             return
+//         }
+//         dispatch(paginResult(result.data, url))
+//         dispatch(pagingload(PAGING_STOP))
+
+//     } catch (err) {
+//         dispatch(error)
+//     }
+// }

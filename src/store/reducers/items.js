@@ -2,9 +2,7 @@ import { LOADING, ERROR, FETCH, PAGING, SORTING,SEARCH } from "../actioncreators
 
 const initialState = {
     currentData: [],
-    filter: { sort: "", size: "" },
-    currentUrl: ``,
-    search: '',
+    filter: { sort: "", storage: "",phone:"",sell:"",page:1},
     categoryView: true,
     pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
     loading: false,
@@ -25,38 +23,31 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
                 pagination: { previous: action.payload.previous, forward: action.payload.forward },
                 loading: false,
                 categoryView:true,
-                currentUrl: action.url,
                 error: { error: "", check: false }
             }
 
-        case PAGING:
-            const result = state.currentData
+        // case PAGING:
+        //     const result = state.currentData
             
-            return {
-                ...state,
-                currentData: [...result, ...action.payload.result],
-                pagination: { previous: action.payload.previous, forward: action.payload.forward },
-                currentUrl: action.url,
-                loading:false,
-                error: { error: "", check: false }
-            }
+        //     return {
+        //         ...state,
+        //         currentData: [...result, ...action.payload.result],
+        //         pagination: { previous: action.payload.previous, forward: action.payload.forward },
+        //         currentUrl: action.url,
+        //         loading:false,
+        //         error: { error: "", check: false }
+        //     }
 
         case LOADING:
             return {
                 ...state,
                 loading: true
             }
-        case SEARCH:
-            return {
-                ...state,
-                search: action.payload,
-                categoryView:false,
-            }
         
         case SORTING:
             return {
                 ...state,
-                filter: { sort: action.payload.sort, size: action.payload.size }
+                filter: { ...state.filter, ...action.payload}
             }
         case ERROR:
             return {

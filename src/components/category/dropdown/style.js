@@ -12,7 +12,7 @@ export const customStyle = {
     menu: (provided, state) => ({
         ...provided,
         background: "white",
-        width:300
+        width:'80%'
     }),
     option: (provided, state) => ({
         ...provided,
@@ -36,7 +36,7 @@ export const customStyle = {
     }),
     
     control: () => ({
-        width: 300,
+        width: '80%',
         display: 'flex',
         marginTop:8,
         border: '3px solid white',

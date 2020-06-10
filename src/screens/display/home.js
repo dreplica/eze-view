@@ -1,18 +1,18 @@
-import React, { useEffect,memo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import Sales from '../../components/sales';
 import {fetchData} from '../../store/actions/items';
 
 function HomeScreen({fetchData,filter,products}) {
-  useEffect(() => {
+  useEffect(() => { 
       //i will have to check with the url here incase an old link is passed, to persist
       fetchData({...filter})
   }, [])
   
-  const MemoizeSale = memo(Sales)
+  const saveInitialInstance  = useMemo(() => [...products], [])
 
-  return (<MemoizeSale products={products}/>);
+  return (<Sales products={saveInitialInstance}/>);
 }
 
 const mapStateToProps = ({ ItemsReducer}) => ({

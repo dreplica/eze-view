@@ -29,7 +29,7 @@ function Category(props) {
     }
 
     const processFilter =  () => {
-        props.fetchData({ ...props.filter });
+        props.fetchData({ ...props.filter,page:1 });
 
         (window.innerWidth < 850) && props.filterEffect('close')
     }

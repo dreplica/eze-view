@@ -1,9 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 
 import Phone from '../phone';
 import {Container} from './style'
 import { connect } from 'react-redux';
- function Sale({products}) {
+function Sale({ products }) {
+    
+    useEffect(() => {
+        
+    },[products])
+
      const Sales = ()=>products.map((phone, ind) => <Phone
          key={ind}
          name={phone.phone}

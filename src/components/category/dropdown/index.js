@@ -9,7 +9,7 @@ import { Container, customStyle } from "./style";
  function Dropdown(props) {
 
     // if a value changes here it woukld make a call to redux
-    const fetchFilter = (value) => {
+     const fetchFilter = (value) => {
         // updateFilter({ ...filter, [props.name]: state })
         const key = props.item.toLowerCase()
         props.updateFilter({ ...props.filter, [key]: value.value })

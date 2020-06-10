@@ -6,7 +6,8 @@ import {
 } from './actions'
 
 
-export const fetchData = ({ sort="", storage="", phone="iphone", condition="",sell="", page=1}) => async dispatch => {
+export const fetchData = ({ sort = "", storage = "", phone = "iphone", condition = "", sell = "", page = 1 }) => async dispatch => {
+    // alert("shorts fired")
     dispatch(load)
     dispatch(addCat)
     try {

@@ -28,10 +28,10 @@ function Category(props) {
         setWatch(true)
     }
 
-    const processFilter = async () => {
-        alert(typeof props.fetch)
-        await props.fetchData({ ...props.filter })
-            (window.innerWidth < 850) && props.filterEffect('close')
+    const processFilter =  () => {
+        props.fetchData({ ...props.filter });
+
+        (window.innerWidth < 850) && props.filterEffect('close')
     }
 
 

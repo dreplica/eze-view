@@ -4,10 +4,6 @@ import Phone from '../phone';
 import {Container} from './style'
 import { connect } from 'react-redux';
  function Sale({products}) {
-    //  useEffect(() => {
-    //     alert(products)
-    // }, [products])
-     
      const Sales = ()=>products.map((phone, ind) => <Phone
          key={ind}
          name={phone.phone}

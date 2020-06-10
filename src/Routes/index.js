@@ -23,7 +23,7 @@ function Routes(props) {
 				<Content>
 					<Navigate />
 					<Switch>
-						<Route exact path="/" component={Screens.Screens.HomeScreen} />
+						{/* <Route exact path="/" component={Screens.Screens.HomeScreen} /> */}
 						<Route path="/buy" component={Screens.Screens.BuyScreen} />
 						<Route path="/sell" component={Screens.Screens.SellScreen} />
 						<Route path="/search/:search" component={Screens.Screens.SearchScreen} />

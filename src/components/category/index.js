@@ -1,15 +1,15 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { displayFilter } from '../../store/actioncreators/effects';
-import { Container, Filter, Context,DropMenu } from './style';
+import { displayFilter } from '../../store/actions/effects';
+import { Container, Filter, Context, DropMenu, Actions, Button } from './style';
 import Dropdown from './dropdown';
 import CategoryData from "../../lib/category.json";
+import { fetchData } from '../../store/actions/items';
 
 function Category(props) {
 
     const [watcher, setWatch] = useState(false)
-
 
     useEffect(() => {
         if (window.innerWidth < 850) {
@@ -28,6 +28,13 @@ function Category(props) {
         setWatch(true)
     }
 
+    const processFilter = async () => {
+        alert(typeof props.fetch)
+        await props.fetchData({ ...props.filter })
+            (window.innerWidth < 850) && props.filterEffect('close')
+    }
+
+
     const closeCat = (e) => {
         e.preventDefault()
         props.filterEffect('close')
@@ -35,28 +42,34 @@ function Category(props) {
 
     const keys = Object.keys(CategoryData)
 
-    const filterMenu = keys.map((item) => <DropMenu>
+    const filterMenu = keys.map((item, ind) => <DropMenu key={ind}>
         <Context>Select {item} :</Context>
-        <Dropdown option={CategoryData[item]} item={item}/>
+        <Dropdown option={CategoryData[item]} item={item} />
     </DropMenu>)
 
     return (
         <Container style={{
-            // display: watcher ?props.displayer:"flex"
+            display: watcher ? props.displayer : "flex"
         }}>
-            <Filter><span>Filter</span> {watcher && <a href='/' onClick={closeCat} >cancel</a>}</Filter>
-            {filterMenu}
 
+            <Filter><span>Filter</span></Filter>
+            {filterMenu}
+            <Actions>
+                <Button onClick={processFilter}>Done</Button>
+                {watcher && <Button href='/' onClick={closeCat} >cancel</Button>}
+            </Actions>
         </Container>
     );
 }
 
-const mapStateToProps = ({ EffectReducer }) => ({
+const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
     categoryView: EffectReducer.categoryView,
     displayer: EffectReducer.categoryMenu,
+    filter: ItemsReducer.filter
 })
 
 
 export default connect(mapStateToProps, {
     filterEffect: displayFilter,
+    fetchData
 })(Category)

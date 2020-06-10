@@ -1,7 +1,7 @@
 import Header from './header/index'
-import Screens from './display'
+import Home from './display/home'
 
 export default {
     Header,
-    Screens
+    Home
 }

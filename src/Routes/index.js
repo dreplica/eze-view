@@ -7,7 +7,7 @@ import Category from '../components/category';
 import Pagination from '../components/pagination';
 import Navigate from '../components/Navigator';
 import Spinner from '../components/spinner';
-import TopIcons from '../components/topIcons';
+import TopIcons from '../components/menuIcon';
 import { Container, Content } from './style';
 import Footer from '../screens/footer';
 
@@ -23,10 +23,7 @@ function Routes(props) {
 				<Content>
 					<Navigate />
 					<Switch>
-						{/* <Route exact path="/" component={Screens.Screens.HomeScreen} /> */}
-						<Route path="/buy" component={Screens.Screens.BuyScreen} />
-						<Route path="/sell" component={Screens.Screens.SellScreen} />
-						<Route path="/search/:search" component={Screens.Screens.SearchScreen} />
+						<Route exact path="/" component={Screens.Home} />
 					</Switch>
 					<Pagination />
 				</Content>

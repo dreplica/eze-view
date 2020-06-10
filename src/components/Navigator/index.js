@@ -1,40 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Select from 'react-select';
 
+import Dropdown from '../category/dropdown';
+import { customStyle } from '../category/dropdown/style';
+import { Context } from '../category/style';
 import { Container } from './style'
-import { Link } from 'react-router-dom';
 
-const nav = ['home', 'buy', 'sell']
 
 export default function Navigate() {
-    const [state, setState] = useState({ nav: nav, count: 0 })
-    const path = window.location.pathname.replace("/", "")
 
-    useEffect(() => {
-        const index = !path?0: state.nav.indexOf(path)
-        setState({...state,count:index})
-    }, [path])
-
-    const style = (ind) => ({
-        color: state.count === ind ? 'white' : 'grey',
-        fontSize: state.count === ind ?'1.2em':'',
-        fontWeight: state.count === ind ?'bold':'',
-        borderBottom: state.count === ind ? '2px solid white' : 'none',
-        paddingBottom: state.count === ind ? '15px' : '5px',
-        background: state.count === ind ? 'rgba(10,24,46,1)' : '',
-    })
-
+    const nav = ['Highest Buy', 'Lowest Sell', 'Random']
     return (
         <Container>
-            {
-                state.nav.map((link, ind) =>
-                    <Link
-                        key={ind}
-                        to={`/${link === 'home' ? '' : link.toLowerCase()}`}
-                        style={style(ind)}
-                        onClick={() => setState({ ...state, count: ind })}>
-                        {link}
-                    </Link>)
-            }
+            <Context style={{ width: 'auto', marginRight: 10 }}>Select Sale Type : </Context>
+            <Select options={[...nav]}
+                styles={customStyle}
+                label="Single select"
+                placeholder={`Pick a Sale`}
+                isSearchable={false}/>
         </Container>
     );
 }

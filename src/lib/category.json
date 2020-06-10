@@ -1,6 +1,6 @@
 {
-	"Storage": [ {"value":"16GB","label":"16GB"}, {"value":"32GB","label":"32GB"}, {"value":"64GB","label":"64GB"}, {"value":"128GB","label":"128GB"}, {"value":"256GB","label":"256GB"}, {"value":"512GB","label":"512GB"} ],
-	"Sort": [ {"value":"MIN","label":"MIN"}, {"value":"MAX","label":"MAX"} ],
+	"Storage": [ {"value":"16","label":"16"}, {"value":"32","label":"32"}, {"value":"64","label":"64"}, {"value":"128","label":"128"}, {"value":"256","label":"256"}, {"value":"512","label":"512"} ],
+	"Sort": [ {"value":"1","label":"MIN"}, {"value":"-1","label":"MAX"} ],
 	"Condition": [ {"value":"NEW","label":"NEW"}, {"value":"A1","label":"A1"}, {"value":"A2","label":"A2"}, {"value":"B1","label":"B1"}, {"value":"B2","label":"B2"}, {"value":"C","label":"C"}, {"value":"C/B","label":"C/B"}, {"value":"C/D","label":"C/D"} ],
 	"Phone": [ {"value":"IPHONE XS MAX","label":"IPHONE XS MAX"}, {"value":"IPHONE XS","label":"IPHONE XS"}, {"value":"IPHONE XR","label":"IPHONE XR"}, {"value":"IPHONE X","label":"IPHONE X"}, {"value":"IPHONE 8 PLUS","label":"IPHONE 8 PLUS"}, {"value":"IPHONE 8","label":"IPHONE 8"}, {"value":"IPHONE 7 PLUS","label":"IPHONE 7 PLUS"}, {"value":"IPHONE 7","label":"IPHONE 7"}, {"value":"IPHONE 6S PLUS","label":"IPHONE 6S PLUS"}, {"value":"IPHONE 6S","label":"IPHONE 6S"}, {"value":"IPHONE 6 PLUS","label":"IPHONE 6 PLUS"}, {"value":"IPHONE 6","label":"IPHONE 6"}, {"value":"IPHONE SE","label":"IPHONE SE"} ]
 }

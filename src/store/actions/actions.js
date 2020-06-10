@@ -24,7 +24,7 @@ export const addCat = {type: NOTSEARCHING}
 
 export const showfilter =(payload)=> ({type:TOGGLE_FILTER,payload})
 
-export const incomingResult = (payload, url) => ({ type: FETCH, payload, url })
+export const incomingResult = (payload) => ({ type: FETCH, payload})
 
 export const paginResult = (payload, url) => ({ type: PAGING, payload, url })
 

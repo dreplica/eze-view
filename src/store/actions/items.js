@@ -1,26 +1,31 @@
 import Axios from "axios"
+
 import mixData from "../../lib/mixData"
 import {
-    load, error, incomingResult, addCat,
+    load, error, incomingResult, addCat,sortFilter
 } from './actions'
 
 
-export const fetchData = ({ sort="", storage="", phone="iphone", sell="", page=1}) => async dispatch => {
+export const fetchData = ({ sort="", storage="", phone="iphone", condition="",sell="", page=1}) => async dispatch => {
     dispatch(load)
     dispatch(addCat)
     try {
-        const result = await Axios.get(`http://localhost:3000/api?limit=9&page=${page}&size=${storage}&sort=${sort},&phone=${phone}&sell=${sell}`)
+        const result = await Axios.get(`http://localhost:3000/api?limit=6&page=${page}&size=${storage}&sort=${sort}&phone=${phone}&sell=${sell}&condition=${condition}`)
 
-        dispatch(sorting({ sort:sort, storage:storage, phone:phone, sell:sell, page:page}))
+        dispatch(sortFilter({ sort:sort, storage:storage, phone:phone, sell:sell, page:page}))
 
         if (!sort) {
-            return dispatch(incomingResult(mixData(result.data), url))
+            return dispatch(incomingResult(mixData(result.data)))
         }
-        dispatch(incomingResult(result.data, url))
+        dispatch(incomingResult(result.data))
     } catch (err) {
         console.log(err)
         dispatch(error)
     }
+}
+
+export const updateFilter = ({ sort = "", storage = "", phone = "iphone", condition = "", sell = "", page = 1 }) => dispatch => {
+    dispatch(sortFilter({ sort: sort, storage: storage, phone: phone, condition:condition, sell: sell, page: page }))
 }
 
 export const updateSpreadsheet = () => dispatch => {

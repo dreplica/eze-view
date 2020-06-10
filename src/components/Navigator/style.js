@@ -5,25 +5,7 @@ export const Container = styled.div`
   height:35px;
   margin-bottom:20px;
   display:flex;
-  justify-content:space-around;
-  align-items:flex-end;
+  justify-content:flex-start;
+  align-items:center;
 
-
-  a{
-      width:30%;
-      height:35px;
-      padding-top:6px ;
-      padding-bottom:5px;
-      color:white;
-      text-transform:capitalize;
-      border-radius:10px 10px 0px 0px;
-      text-align:center;
-      text-decoration:none;
-
-      :hover{
-          color:white !important;
-          font-size:1.1em;
-      }
-      
-  }
 `;

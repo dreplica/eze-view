@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Loadphones from '../loadphones';
 import { Container, Filter } from './style'
-import { displayFilter } from '../../store/actioncreators/effects';
+import { displayFilter } from '../../store/actions/effects';
 import { connect } from 'react-redux';
 
 function TopIcons({ setfilter }) {
@@ -34,7 +34,6 @@ function TopIcons({ setfilter }) {
 
     return (
         <Container>
-            {/* <Cover style={{}}/> */}
             {state.button && <Filter onClick={showFilter} src='/assets/menu.svg' alt='filter' />}
             <Loadphones />
         </Container>

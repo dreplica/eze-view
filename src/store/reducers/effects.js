@@ -1,4 +1,4 @@
-import { PAGING_STOP, SEARCHING, PAGING_START,MENU, TOGGLE_FILTER, NOTSEARCHING } from "../actioncreators/actions"
+import { PAGING_STOP, SEARCHING, PAGING_START,MENU, TOGGLE_FILTER, NOTSEARCHING } from "../actions/actions"
 
 const initialState = {
     categoryMenu: 'none',

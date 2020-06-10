@@ -4,6 +4,8 @@ export const Container = styled.div`
   width:25%;
   position:sticky;
   top:20px;
+  height:auto;
+  padding-bottom:10px;
   display:flex;
   border-radius:0px 10px 10px 0px;
   flex-direction:column;
@@ -15,48 +17,51 @@ export const Container = styled.div`
     position:fixed;
     overflow-Y:auto;
     width:80%;
+    justify-content:flex-start;
     border:2px solid white;
     border-radius:10px;
     left:10%;
     z-index:4;
-    top:15vh;
-    height:70vh;
+    top:10vh;
+    height:80vh;
   }
 
 `;
 
 export const Filter = styled.h2`
     color:white;
-    display:flex;
-    justify-content:space-between;
-    width:70%;
-    margin:10px 0px;
-
-    a{
-        text-decoration:none;
-        color:grey;
-
-        :hover{
-            color:white;
-            transform:scale(1.2);
-        }
-    }
+    text-align:center;
+    padding:10px;
+    border-bottom:2px solid white;
+    border-radius:0px 10px 0px 0px;
+    background:black;
+    width:100%;
 `;
     
-export const Phones = styled.div`
+export const Actions = styled.div`
+    width:50%;
+    height:50px;
+    margin:30px;
     display:flex;
-    flex-direction:column;
-    width:70%;
-    margin-bottom:20px;
+    justify-content:space-around;
+    align-items:center;
+`;
 
-    a{
-        color:white;
-        text-decoration:none;
-        width:auto;
-        :hover{
-            font-weight:bolder;
+export const Button = styled.button`
+    text-decoration:none;
+    color:black;
+    width:100px;
+    padding:5px;
+    border:1px solid black;
+    border-radius:10px;
+    background-color:white;
+    outline-width:0;
+
+    :hover{
+            color:white;
+            background:black;
+            transform:scale(1.2);
         }
-    }
 `;
     
 export const Context = styled.h3`

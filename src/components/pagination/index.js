@@ -1,46 +1,44 @@
 import React from 'react';
-
-import LittleSpinner from '../spinner/littleSpinner';
 import { connect } from 'react-redux';
-import { paginate,searchPhone} from '../../store/actioncreators/items';
-import { Container, Navigate, Text } from './style';
+import {FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 
-function Pagination(props) {
+import { fetchData } from '../../store/actions/items';
+import { Container, Navigate,Page } from './style';
 
-  //here it updates, if theres a next,
-  //it would update the previous button with the url
-  //same for the next button
+function Pagination({ fetch, paging, filter }) {
 
-  const getRequest = () => {
-    const path = window.location.pathname
-    if (/search/i.test(path)) {
-      props.search(`search?page=${props.forward.page}&limit=${props.forward.limit}`,
-        { search:props.searchVal, sort:props.filter.sort,size:"" },true
-      )
-      return
-    }
-    props.fetch(`${path}?page=${props.forward.page}&limit=${props.forward.limit}`, props.filter)
+  const getRequest = (e) => {
+    const id = e.currentTarget.id
+
+    id === 'prev'
+      ? fetch({ ...filter, page: paging.previous.page })
+      : fetch({ ...filter, page: paging.forward.page })
   }
 
-  const outOfPage = <Text>...Oops Sorry You're out of Content...</Text>
+  // const outOfPage = <Text>...Oops Sorry You're out of Content...</Text>
 
-  if (!props.forward.page) return outOfPage
+  // if (!paging.forward.page) return outOfPage
 
   return <Container>
-    {props.loading
-      ? <LittleSpinner path='/assets/801.png' width="10" />
-      : <Navigate onClick={getRequest}>See More</Navigate>
-    }
 
+    <Navigate
+      onClick={getRequest}
+      id='prev'
+      disabled={!paging.previous.page}> <FaArrowLeft /></Navigate>
+
+    <Page>{filter.page}</Page>
+
+    <Navigate
+      onClick={getRequest}
+      id='forw'
+      disabled={!paging.forward.page}><FaArrowRight /></Navigate>
   </Container>;
 }
 
 const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
   loading: EffectReducer.pageload,
-  forward: ItemsReducer.pagination.forward,
-  url: ItemsReducer.currentUrl,
-  searchVal:ItemsReducer.search,
+  paging: ItemsReducer.pagination,
   filter: ItemsReducer.filter,
 })
 
-export default connect(mapStateToProps, { search:searchPhone, fetch: paginate })(Pagination)
+export default connect(mapStateToProps, { fetch: fetchData })(Pagination)

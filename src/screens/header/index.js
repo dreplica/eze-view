@@ -1,12 +1,15 @@
 import React from 'react';
 
-import Intro from './intro'
-import {Container,Image} from './style'
+import { Container, Content, Text } from './style'
+
 export default function Header() {
   return (
-      <Container>
-          <Intro />
-          {/* <Image src='/assets/four.png' alt='background'/> */}
+    <Container>
+      <Content>
+        <Text>
+          SHOP OUR LATEST AVAILABLE STOCKS
+          </Text>
+      </Content>
     </Container>
   );
 }

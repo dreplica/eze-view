@@ -4,8 +4,9 @@ import Phone from '../phone';
 import {Container} from './style'
 import { connect } from 'react-redux';
  function Sale({products}) {
-    useEffect(() => {
-    }, [products])
+    //  useEffect(() => {
+    //     alert(products)
+    // }, [products])
      
      const Sales = ()=>products.map((phone, ind) => <Phone
          key={ind}
@@ -15,7 +16,7 @@ import { connect } from 'react-redux';
          price={phone.price}
          condition={phone.condition}
          size={phone.size}
-         sale={phone.sell.replace(/\w$/, "").toLocaleUpperCase()}
+         sale={phone.sell.toLocaleUpperCase()}
          memory={phone.memory}
      />)
      

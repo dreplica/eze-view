@@ -66,8 +66,9 @@ export const Context = styled.h3`
 `;
     
     
-export const Price = styled.div`
+export const DropMenu = styled.div`
     display: flex;
+    margin-top:10px;
     flex-direction:column;
     align-self:center;
     justify-content:center;

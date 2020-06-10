@@ -11,7 +11,8 @@ export const Title = styled.div`
 export const customStyle = {
     menu: (provided, state) => ({
         ...provided,
-        background:"white"
+        background: "white",
+        width:300
     }),
     option: (provided, state) => ({
         ...provided,
@@ -19,9 +20,10 @@ export const customStyle = {
         backgroundColor: state.isSelected ? 'black' : "white",
         color: state.isSelected ? 'white' : "black",
         ":hover": {
-            backgroundColor: state.isSelected?"white":"black",
-            color: state.isSelected?"black":"white"
+            backgroundColor: "black",
+            color:"white"
         },
+        cursor:"pointer"
         
     }),
     input: (provided) => ({
@@ -36,8 +38,10 @@ export const customStyle = {
     control: () => ({
         width: 300,
         display: 'flex',
+        marginTop:8,
         border: '3px solid white',
-        borderRadius:10
+        borderRadius: 10,
+        cursor: "pointer"
     }),
     singleValue:()=>({
         // background: "red",

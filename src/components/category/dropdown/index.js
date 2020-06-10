@@ -5,7 +5,7 @@ import { Container, customStyle } from "./style";
 
 const initialData = [{ value: "one", label: "one" }, { value: "two", label: "two" }, { value: "three", label: "three" }, { value: "four", label: "four" }]
 
-export default function Dropdown(props = { option: initialData }) {
+export default function Dropdown(props) {
     const [state, setstate] = useState("initialState")
 
     // if a value changes here it woukld make a call to redux
@@ -20,9 +20,9 @@ export default function Dropdown(props = { option: initialData }) {
                 value={state}
                 styles={customStyle}
                 label="Single select"
-                placeholder="select something"
+                placeholder={`Pick a ${props.item}`}
                 onChange={setstate}
-                options={initialData}
+                options={props.option}
                 isSearchable={false}
             />
         </Container>

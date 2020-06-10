@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 
 import { connect } from 'react-redux';
 import { displayFilter } from '../../store/actioncreators/effects';
-import { Container, Filter, Context } from './style';
+import { Container, Filter, Context,DropMenu } from './style';
 import Dropdown from './dropdown';
 import CategoryData from "../../lib/category.json";
 
@@ -23,8 +23,7 @@ function Category(props) {
 
     const toggleFilter = () => {
         if (window.innerWidth > 850) {
-            return setWatch(false)
-            ;
+            return setWatch(false);
         }
         setWatch(true)
     }
@@ -38,9 +37,8 @@ function Category(props) {
 
     const filterMenu = keys.map((item) => <DropMenu>
         <Context>Select {item} :</Context>
-        <Dropdown option={CategoryData[item]} />
+        <Dropdown option={CategoryData[item]} item={item}/>
     </DropMenu>)
-
 
     return (
         <Container style={{
@@ -53,7 +51,7 @@ function Category(props) {
     );
 }
 
-const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
+const mapStateToProps = ({ EffectReducer }) => ({
     categoryView: EffectReducer.categoryView,
     displayer: EffectReducer.categoryMenu,
 })

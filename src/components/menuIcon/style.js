@@ -2,9 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display:flex;
-    margin-top:10px;
+    position:sticky;
+    background-color: rgb(4, 12, 27);
+    top:0px;
+    padding-top:10px;
+    z-index:2;
     width:100%;
-    height:40px;
+    height:60px;
     align-items:center;
     justify-content:space-between;
 `;

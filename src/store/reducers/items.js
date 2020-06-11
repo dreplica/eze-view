@@ -1,10 +1,10 @@
-import { LOADING, ERROR, FETCH, PAGING, SORTING,SEARCH } from "../actions/actions"
+import { LOADING, ERROR, FETCH, SORTING } from "../actions/actions"
 
 const initialState = {
     currentData: [],
-    filter: { sort: "",condition:"", storage: "",phone:"",sell:"",page:1},
+    filter: { sort: "", condition: "", size: "", phone: "", sell: "", page: 1 },
     categoryView: true,
-    pagination: { previous:  { page:"", limit:""} , forward: {page:"",limit:""} },
+    pagination: { previous: { page: "", limit: "" }, forward: { page: "", limit: "" } },
     loading: false,
     error: { error: "", check: false }
 }
@@ -22,33 +22,21 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
                 currentData: action.payload.result,
                 pagination: { previous: action.payload.previous, forward: action.payload.forward },
                 loading: false,
-                categoryView:true,
+                categoryView: true,
                 error: { error: "", check: false }
             }
-
-        // case PAGING:
-        //     const result = state.currentData
-            
-        //     return {
-        //         ...state,
-        //         currentData: [...result, ...action.payload.result],
-        //         pagination: { previous: action.payload.previous, forward: action.payload.forward },
-        //         currentUrl: action.url,
-        //         loading:false,
-        //         error: { error: "", check: false }
-        //     }
 
         case LOADING:
             return {
                 ...state,
                 loading: true
             }
-        
+
         case SORTING:
             console.group(action.payload)
             return {
                 ...state,
-                filter: {...action.payload}
+                filter: { ...action.payload }
             }
         case ERROR:
             return {
@@ -56,7 +44,6 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
                 error: { error: action.payload, check: true },
                 loading: false,
             }
-
 
         default:
             return state;

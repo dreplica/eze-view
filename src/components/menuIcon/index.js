@@ -41,8 +41,4 @@ function TopIcons({ setfilter }) {
 }
 
 
-const mapStateTOProps = ({ EffectReducer }) => ({
-
-})
-
 export default connect(null, { setfilter: displayFilter })(TopIcons)

@@ -1,4 +1,3 @@
-@import url('http://fonts.googleapis.com/css?family=Roboto');
 
 *{
   margin:0px;
@@ -9,9 +8,8 @@
 body {
   background-color: rgb(4, 12, 27);
   margin: 0;
+  position:relative;
   max-width: 1600px;
   margin:auto;
   font-family:"Roboto";
 }
-
-

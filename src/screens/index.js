@@ -1,5 +1,5 @@
 import Header from './header/index'
-import Home from './display/home'
+import Home from './display'
 
 export default {
     Header,

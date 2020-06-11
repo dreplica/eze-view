@@ -1,6 +1,6 @@
 import React from 'react';
 import List from './components/list';
-import Data from '../../lib/service.json'
+import Data from '../../lib/json/service.json'
 import { Container, Logo, Foot, Listing } from './style'
 import SocialLinks from './components/sociallinks';
 

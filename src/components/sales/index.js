@@ -3,12 +3,16 @@ import React, { memo, useEffect } from 'react';
 import Phone from '../phone';
 import {Container} from './style'
 import { connect } from 'react-redux';
-function Sale({ products }) {
+
+export default function Sale({ products }) {
     
     useEffect(() => {
         
     },[products])
 
+    if (!products.length) {
+        return <>....oOPs Sorry, We don't have that phone ...</>
+    }
      const Sales = ()=>products.map((phone, ind) => <Phone
          key={ind}
          name={phone.phone}
@@ -26,8 +30,8 @@ function Sale({ products }) {
   );
 }
 
-const mapStateToProps = ({ItemsReducer}) => ({
-    products:ItemsReducer.currentData
-})
+// const mapStateToProps = ({ItemsReducer}) => ({
+//     products:ItemsReducer.currentData
+// })
 
-export default connect(mapStateToProps,null)(Sale)
+// export default connect(mapStateToProps,null)(Sale)

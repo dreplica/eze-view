@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    position:fixed;
+    position:absolute;
     width:100%;
-    top:0px;
+    top:0;
     height:100%;
+    z-index:4;
     display:flex;
     z-index:2;
     justify-content:center;

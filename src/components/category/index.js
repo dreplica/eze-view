@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import queryString from "query-string"
 
 import { connect } from 'react-redux';
 import { displayFilter } from '../../store/actions/effects';
-import { Container, Filter, Context, DropMenu, Actions, Button } from './style';
-import Dropdown from './dropdown';
-import CategoryData from "../../lib/category.json";
 import { fetchData } from '../../store/actions/items';
+import Dropdown from './dropdown';
+import CategoryData from "../../lib/json/category.json";
+import { Container, Filter, Context, DropMenu, Actions, Button } from './style';
+import { useHistory } from 'react-router-dom';
+
+//since the value wont change is better outside to save new instance
+const keys = Object.keys(CategoryData)
 
 function Category(props) {
-
+    const history = useHistory()
     const [watcher, setWatch] = useState(false)
 
     useEffect(() => {
@@ -28,10 +33,12 @@ function Category(props) {
         setWatch(true)
     }
 
-    const processFilter =  () => {
-        props.fetchData({ ...props.filter,page:1 });
-
-        (window.innerWidth < 850) && props.filterEffect('close')
+    const processFilter = () => {
+        const query = queryString.stringifyUrl({ url: "", query: { ...props.filter, page: 1 } });
+        (window.innerWidth < 850) && props.filterEffect('close');
+        history.push(query)
+        // return 
+        // props.fetchData({ ...props.filter, page: 1 });
     }
 
 
@@ -40,19 +47,21 @@ function Category(props) {
         props.filterEffect('close')
     }
 
-    const keys = Object.keys(CategoryData)
+    const filterMenu = keys.map((item, ind) => {
+        const description = item === 'size' ? "Storage" : item
 
-    const filterMenu = keys.map((item, ind) => <DropMenu key={ind}>
-        <Context>Select {item} :</Context>
-        <Dropdown option={CategoryData[item]} item={item} />
-    </DropMenu>)
+        return (
+            <DropMenu key={ind}>
+            <Context>Select {description} :</Context>
+            <Dropdown option={CategoryData[item]} item={description} name={item} />
+            </DropMenu>
+        )
+    })
+
 
     return (
-        <Container style={{
-            display: watcher ? props.displayer : "flex"
-        }}>
-
-            <Filter><span>Filter</span></Filter>
+        <Container style={{ display: watcher ? props.displayer : "flex" }}>
+            <Filter><h2>Filter</h2></Filter>
             {filterMenu}
             <Actions>
                 <Button onClick={processFilter}>Done</Button>

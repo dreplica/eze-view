@@ -28,10 +28,12 @@ export const Container = styled.div`
 
 `;
 
-export const Filter = styled.h2`
+export const Filter = styled.div`
     color:white;
     text-align:center;
     padding:10px;
+    position:relative;
+    height:auto;
     border-bottom:2px solid white;
     border-radius:0px 10px 0px 0px;
     background:black;

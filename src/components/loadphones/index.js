@@ -6,9 +6,11 @@ import { updateSpreadsheet } from '../../store/actions/items';
 import { Container, Link, } from './style'
 
 function LoadPhones({ update }) {
-    
+    const history = useHistory()
+
     const refreshPage = () => {
         update()
+        history.push('/')
     }
 
     return (
@@ -18,4 +20,4 @@ function LoadPhones({ update }) {
     );
 }
 
-export default connect(null, { update:updateSpreadsheet })(LoadPhones)
+export default connect(null, { update: updateSpreadsheet })(LoadPhones)

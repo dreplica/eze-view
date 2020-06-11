@@ -1,44 +1,45 @@
-import React from 'react';
+import React  from 'react';
 import { connect } from 'react-redux';
-import {FaArrowRight, FaArrowLeft } from 'react-icons/fa'
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
+import { useHistory } from 'react-router-dom';
+import queryString from 'query-string'
 
-import { fetchData } from '../../store/actions/items';
-import { Container, Navigate,Page } from './style';
+import { Container, Navigate, Page } from './style';
 
-function Pagination({ fetch, paging, filter }) {
+function Pagination({ paging, filter }) {
+
+  const { push } = useHistory()
 
   const getRequest = (e) => {
-    const id = e.currentTarget.id
+    const page = e.currentTarget.id
+    const query = queryString.stringifyUrl({ url: '', query: { ...filter, page } })
+    push(query)
 
-    id === 'prev'
-      ? fetch({ ...filter, page: paging.previous.page })
-      : fetch({ ...filter, page: paging.forward.page })
+    // id === 'prev'
+    //   ? fetch({ ...filter, page: paging.previous.page })
+    //   : fetch({ ...filter, page: paging.forward.page })
   }
 
-  // const outOfPage = <Text>...Oops Sorry You're out of Content...</Text>
+  return (
+    <Container>
+      <Navigate
+        onClick={getRequest}
+        id={paging.previous.page}
+        disabled={!paging.previous.page}> <FaArrowLeft /></Navigate>
 
-  // if (!paging.forward.page) return outOfPage
+      <Page>{filter.page}</Page>
 
-  return <Container>
-
-    <Navigate
-      onClick={getRequest}
-      id='prev'
-      disabled={!paging.previous.page}> <FaArrowLeft /></Navigate>
-
-    <Page>{filter.page}</Page>
-
-    <Navigate
-      onClick={getRequest}
-      id='forw'
-      disabled={!paging.forward.page}><FaArrowRight /></Navigate>
-  </Container>;
+      <Navigate
+        onClick={getRequest}
+        id={paging.forward.page}
+        disabled={!paging.forward.page}><FaArrowRight /></Navigate>
+    </Container>
+  );
 }
 
-const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
-  loading: EffectReducer.pageload,
+const mapStateToProps = ({ ItemsReducer }) => ({
   paging: ItemsReducer.pagination,
   filter: ItemsReducer.filter,
 })
 
-export default connect(mapStateToProps, { fetch: fetchData })(Pagination)
+export default connect(mapStateToProps,null)(Pagination)

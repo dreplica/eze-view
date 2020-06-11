@@ -1,19 +1,19 @@
 import Axios from "axios"
 
-import mixData from "../../lib/mixData"
+import mixData from "../../lib/functions/mixData"
 import {
-    load, error, incomingResult, addCat,sortFilter
+    load, error, incomingResult, addCat, sortFilter
 } from './actions'
 
 
-export const fetchData = ({ sort = "", storage = "", phone = "iphone", condition = "", sell = "", page = 1 }) => async dispatch => {
+export const fetchData = ({ sort = "", size = "", phone = "iphone", condition = "", sell = "", page = 1 }) => async dispatch => {
     // alert("shorts fired")
     dispatch(load)
     dispatch(addCat)
     try {
-        const result = await Axios.get(`http://localhost:3000/api?limit=6&page=${page}&size=${storage}&sort=${sort}&phone=${phone}&sell=${sell}&condition=${condition}`)
+        const result = await Axios.get(`http://localhost:3000/api?limit=6&page=${page}&size=${size}&sort=${sort}&phone=${phone}&sell=${sell}&condition=${condition}`)
 
-        dispatch(sortFilter({ sort:sort, storage:storage, phone:phone, sell:sell, page:page}))
+        dispatch(sortFilter({ sort, phone, sell, page, condition, size }))
 
         if (!sort) {
             return dispatch(incomingResult(mixData(result.data)))
@@ -25,8 +25,8 @@ export const fetchData = ({ sort = "", storage = "", phone = "iphone", condition
     }
 }
 
-export const updateFilter = ({ sort = "", storage = "", phone = "iphone", condition = "", sell = "", page = 1 }) => dispatch => {
-    dispatch(sortFilter({ sort: sort, storage: storage, phone: phone, condition:condition, sell: sell, page: page }))
+export const updateFilter = ({ sort = "", size = "", phone = "iphone", condition = "", sell = "", page = 1 }) => dispatch => {
+    dispatch(sortFilter({ sort, phone, condition, sell, page, size }))
 }
 
 export const updateSpreadsheet = () => dispatch => {
@@ -36,6 +36,8 @@ export const updateSpreadsheet = () => dispatch => {
         Axios.get(`http://localhost:3000/api`)
             .then(async _ => {
                 const result = await Axios.get(`http://localhost:3000/api?limit=6&page=1`)
+
+                dispatch(sortFilter({ sort:"", phone:"iphone", condition:"", sell:"", page:1, size:"" }))
                 dispatch(incomingResult(mixData(result.data), url))
             })
             .catch((err) => dispatch(error))
@@ -51,7 +53,7 @@ export const updateSpreadsheet = () => dispatch => {
 //         dispatch(pagingload(PAGING_START))
 //         const result = await Axios.get(`https://eze-test.herokuapp.com${url}&filter=${sort},${size}`)
 //         dispatch(sorting({ sort: sort, size: size }))
-        
+
 //         if (!sort) {
 //             dispatch(paginResult(mixData(result.data), url))
 //             dispatch(pagingload(PAGING_STOP))

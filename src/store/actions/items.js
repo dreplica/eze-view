@@ -11,7 +11,7 @@ export const fetchData = ({ sort = "", size = "", phone = "iphone", condition = 
     dispatch(load)
     dispatch(addCat)
     try {
-        const result = await Axios.get(`http://localhost:3000/api?limit=6&page=${page}&size=${size}&sort=${sort}&phone=${phone}&sell=${sell}&condition=${condition}`)
+        const result = await Axios.get(`https://eze-test.herokuapp.com/api?limit=6&page=${page}&size=${size}&sort=${sort}&phone=${phone}&sell=${sell}&condition=${condition}`)
 
         dispatch(sortFilter({ sort, phone, sell, page, condition, size }))
 
@@ -33,11 +33,11 @@ export const updateSpreadsheet = () => dispatch => {
     try {
         const url = `?page=1&limit=12`
         dispatch(load)
-        Axios.get(`http://localhost:3000/api`)
+        Axios.get(`https://eze-test.herokuapp.com/api`)
             .then(async _ => {
-                const result = await Axios.get(`http://localhost:3000/api?limit=6&page=1`)
+                const result = await Axios.get(`https://eze-test.herokuapp.com/api?limit=6&page=1`)
 
-                dispatch(sortFilter({ sort:"", phone:"iphone", condition:"", sell:"", page:1, size:"" }))
+                dispatch(sortFilter({ sort: "", phone: "iphone", condition: "", sell: "", page: 1, size: "" }))
                 dispatch(incomingResult(mixData(result.data), url))
             })
             .catch((err) => dispatch(error))
@@ -46,4 +46,3 @@ export const updateSpreadsheet = () => dispatch => {
         dispatch(error)
     }
 }
-

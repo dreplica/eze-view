@@ -1,8 +1,9 @@
 import React from 'react';
+
 import List from './list';
+import SocialLinks from './sociallinks';
 import Data from '../../lib/json/service.json'
 import { Container, Logo, Foot, Listing } from './style'
-import SocialLinks from './components/sociallinks';
 
 export default function Footer() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Links from '../../../../lib/json/links.json'
+import Links from '../../../lib/json/links.json'
 import {Container} from './style'
 export default function SocialLinks() {
   return (

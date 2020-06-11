@@ -33,7 +33,6 @@ const ItemsReducer = (state = initialState, action = initialAction) => {
             }
 
         case SORTING:
-            console.group(action.payload)
             return {
                 ...state,
                 filter: { ...action.payload }

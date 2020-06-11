@@ -1,8 +1,6 @@
 export default function (data) {
-    console.log("started")
     const copyData = JSON.parse(JSON.stringify(data))
     copyData.result = shuffle(copyData.result)
-    console.log("ended",copyData)
     
     return copyData
 }

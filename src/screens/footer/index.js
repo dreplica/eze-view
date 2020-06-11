@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './components/list';
+import List from './list';
 import Data from '../../lib/json/service.json'
 import { Container, Logo, Foot, Listing } from './style'
 import SocialLinks from './components/sociallinks';

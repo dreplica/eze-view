@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import queryString from "query-string"
-
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { displayFilter } from '../../store/actions/effects';
 import { fetchData } from '../../store/actions/items';
 import Dropdown from './dropdown';
 import CategoryData from "../../lib/json/category.json";
 import { Container, Filter, Context, DropMenu, Actions, Button } from './style';
-import { useHistory } from 'react-router-dom';
 
-//since the value wont change is better outside to save new instance
+//since the value wont change is better outside to stop new instance on render
 const keys = Object.keys(CategoryData)
 
 function Category(props) {
@@ -37,8 +37,6 @@ function Category(props) {
         const query = queryString.stringifyUrl({ url: "", query: { ...props.filter, page: 1 } });
         (window.innerWidth < 850) && props.filterEffect('close');
         history.push(query)
-        // return 
-        // props.fetchData({ ...props.filter, page: 1 });
     }
 
 

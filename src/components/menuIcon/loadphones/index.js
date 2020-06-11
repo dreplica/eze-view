@@ -2,8 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { updateSpreadsheet } from '../../store/actions/items';
+import { updateSpreadsheet } from '../../../store/actions/items';
 import { Container, Link, } from './style'
+import { FaHome } from 'react-icons/fa';
 
 function LoadPhones({ update }) {
     const history = useHistory()
@@ -15,7 +16,7 @@ function LoadPhones({ update }) {
 
     return (
         <Container>
-            <Link onClick={refreshPage}>Load Phones</Link>
+            <Link onClick={refreshPage}> <FaHome /> <span> Load Phones</span></Link>
         </Container>
     );
 }

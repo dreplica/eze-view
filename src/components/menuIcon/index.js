@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Loadphones from '../loadphones';
+import Loadphones from './loadphones';
 import { Container, Filter } from './style'
 import { displayFilter } from '../../store/actions/effects';
 import { connect } from 'react-redux';
@@ -34,8 +34,8 @@ function TopIcons({ setfilter }) {
 
     return (
         <Container>
-            {state.button && <Filter onClick={showFilter} src='/assets/menu.svg' alt='filter' />}
             <Loadphones />
+            {state.button && <Filter onClick={showFilter} src='/assets/menu.svg' alt='filter' />}
         </Container>
     );
 }

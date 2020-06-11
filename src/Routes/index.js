@@ -28,7 +28,7 @@ function Routes(props) {
 					<Pagination />
 				</Content>
 			</Container>
-			<Footer />
+			<Screens.Footer />
 		</Router>
 	);
 }

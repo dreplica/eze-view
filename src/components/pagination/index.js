@@ -14,10 +14,6 @@ function Pagination({ paging, filter }) {
     const page = e.currentTarget.id
     const query = queryString.stringifyUrl({ url: '', query: { ...filter, page } })
     push(query)
-
-    // id === 'prev'
-    //   ? fetch({ ...filter, page: paging.previous.page })
-    //   : fetch({ ...filter, page: paging.forward.page })
   }
 
   return (

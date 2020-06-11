@@ -6,9 +6,7 @@ export default function Header() {
   return (
     <Container>
       <Content>
-        <Text>
-          SHOP OUR LATEST AVAILABLE STOCKS
-          </Text>
+        <Text>SHOP OUR LATEST AVAILABLE STOCKS</Text>
       </Content>
     </Container>
   );

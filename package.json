@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "eslint": "^7.2.0",
     "heroku": "^7.42.1",
+    "jest": "^26.0.1",
     "query-string": "^6.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -25,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,5 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

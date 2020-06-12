@@ -23,7 +23,7 @@ export const Container = styled.div`
     left:10%;
     z-index:4;
     top:10vh;
-    height:80vh;
+    min-height:80vh;
   }
 
 `;

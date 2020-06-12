@@ -4,10 +4,15 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { displayFilter } from '../../store/actions/effects';
-import { fetchData } from '../../store/actions/items';
+import { updateFilter } from '../../store/actions/items';
 import Dropdown from './dropdown';
 import CategoryData from "../../lib/json/category.json";
-import { Container, Filter, Context, DropMenu, Actions, Button } from './style';
+import {
+    Container,Line,
+    Filter, Context,
+    DropMenu, Actions,
+    Button, Sort
+} from './style';
 
 //since the value wont change is better outside to stop new instance on render
 const keys = Object.keys(CategoryData)
@@ -15,6 +20,7 @@ const keys = Object.keys(CategoryData)
 function Category(props) {
     const history = useHistory()
     const [watcher, setWatch] = useState(false)
+    const [priceSort, setSort] = useState({ min: "", max: "" })
 
     useEffect(() => {
         if (window.innerWidth < 850) {
@@ -34,7 +40,10 @@ function Category(props) {
     }
 
     const processFilter = () => {
-        const query = queryString.stringifyUrl({ url: "", query: { ...props.filter, page: 1 } });
+        const query = queryString.stringifyUrl({
+            url: "",
+            query: { ...props.filter, page: 1, [priceSort.min]: 0, [priceSort.max]: 0 }
+        });
         (window.innerWidth < 850) && props.filterEffect('close');
         history.push(query)
     }
@@ -50,8 +59,8 @@ function Category(props) {
 
         return (
             <DropMenu key={ind}>
-            <Context>Select {description} :</Context>
-            <Dropdown option={CategoryData[item]} item={description} name={item} />
+                <Context>Select {description} :</Context>
+                <Dropdown option={CategoryData[item]} item={description} name={item} />
             </DropMenu>
         )
     })
@@ -61,6 +70,21 @@ function Category(props) {
         <Container style={{ display: watcher ? props.displayer : "flex" }}>
             <Filter><h2>Filter</h2></Filter>
             {filterMenu}
+            <Context style={{marginTop:20}}>Sort Price:</Context>
+            <Sort
+                type='number'
+                value={props.filter.min}
+                placeholder='MIN'
+                onChange={(e) => props.updateFilter({ ...props.filter, min: e.currentTarget.value })} />
+
+            <Line />
+
+            <Sort
+                type='number'
+                value={props.filter.max}
+                placeholder='MAX'
+                onChange={(e) => props.updateFilter({ ...props.filter, max: e.currentTarget.value })} />
+
             <Actions>
                 <Button onClick={processFilter}>Done</Button>
                 {watcher && <Button href='/' onClick={closeCat} >cancel</Button>}
@@ -78,5 +102,5 @@ const mapStateToProps = ({ ItemsReducer, EffectReducer }) => ({
 
 export default connect(mapStateToProps, {
     filterEffect: displayFilter,
-    fetchData
+    updateFilter
 })(Category)

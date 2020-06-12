@@ -41,19 +41,21 @@ export const Filter = styled.div`
 `;
     
 export const Actions = styled.div`
-    width:50%;
+    width:60%;
     height:50px;
-    margin:30px;
+    margin:5px 15%;
+    align-self:flex-start;
     display:flex;
     justify-content:space-around;
-    align-items:center;
+    align-items:flex-start;
 `;
 
 export const Button = styled.button`
     text-decoration:none;
     color:black;
-    width:100px;
+    width:40%;
     padding:5px;
+    margin-top:5px;
     border:1px solid black;
     border-radius:10px;
     background-color:white;
@@ -99,3 +101,22 @@ export const Item = styled.button`
         border:2px solid black;
     }
 `
+
+export const Line = styled.div`
+    width:1px;
+    height:15px;
+    align-self:flex-start;
+    margin:3px 35% !important;
+    background:white;
+`;
+
+export const Sort = styled.input`
+    width:55%;
+    height:35px;
+    padding-left:10px;
+    align-self:flex-start;
+    margin-left:15% !important;
+    border:2px solid white;
+    border-radius:5px;
+    margin:6px 5px;
+`;

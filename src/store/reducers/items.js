@@ -2,7 +2,7 @@ import { LOADING, ERROR, FETCH, SORTING } from "../actions/actions"
 
 const initialState = {
     currentData: [],
-    filter: { sort: "", condition: "", size: "", phone: "", sell: "", page: 1 },
+    filter: { min: "",max:"", condition: "", size: "", phone: "", sell: "", page: 1 },
     categoryView: true,
     pagination: { previous: { page: "", limit: "" }, forward: { page: "", limit: "" } },
     loading: false,

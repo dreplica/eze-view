@@ -12,13 +12,13 @@ const nav = [
     { value:  "", label: 'Random' }
 ]
 
-function Navigate(props) {
+export default function Navigate(props) {
     const history = useHistory()
 
     const sortSale = (val) => {
         const query = queryString.stringifyUrl({
             url: "",
-            query: { ...props.filter, sell: val.value }
+            query: { sell: val.value,page:1 }
         })
         history.push(query)
     }
@@ -42,9 +42,3 @@ function Navigate(props) {
         </Container>
     );
 }
-
-const mapStateToProps = ({ ItemsReducer }) => ({
-    filter: ItemsReducer.filter
-})
-
-export default connect(mapStateToProps, null)(Navigate)

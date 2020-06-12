@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { displayFilter } from '../../store/actions/effects';
-import { updateFilter } from '../../store/actions/items';
+import { updateFilter } from '../../store/actioncreators/items';
 import Dropdown from './dropdown';
 import CategoryData from "../../lib/json/category.json";
 import {

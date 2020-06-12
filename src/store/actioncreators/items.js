@@ -3,7 +3,7 @@ import Axios from "axios"
 import mixData from "../../lib/functions/mixData"
 import {
     load, error, incomingResult, addCat, sortFilter
-} from './actions'
+} from '../actions/actions'
 
 
 export const fetchData = ({ min = "",max="", size = "", phone = "iphone", condition = "", sell = "", page = 1 }) => async dispatch => {

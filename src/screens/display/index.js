@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import queryString from 'query-string'
 
 import Sales from '../../components/sales';
-import { fetchData } from '../../store/actions/items';
+import { fetchData } from '../../store/actioncreators/items';
 
 function HomeScreen({ fetchData, filter, products, location }) {
 

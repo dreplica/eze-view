@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 
-import { fetchData, updateFilter } from "../../../store/actions/items"
+import { fetchData, updateFilter } from "../../../store/actioncreators/items"
 import { customStyle } from "./style";
 
 

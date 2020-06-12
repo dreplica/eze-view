@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
 import Phone from '../phone';
 import {Container,Warning} from './style'

@@ -4,7 +4,6 @@ import queryString from 'query-string'
 
 import { Container, Val, customStyle } from './style'
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const nav = [
     { value: "buy", label: 'Highest Buy' },

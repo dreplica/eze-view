@@ -9,7 +9,7 @@ import { customStyle } from "./style";
 function Dropdown(props) {
 
     const [key] = useState(props.name.toLowerCase())
-    const [state, setState] = useState({value:"",label:""})
+    const [state, setState] = useState({ value: "", label: "" })
 
     useEffect(() => {
         setState({
@@ -35,7 +35,7 @@ function Dropdown(props) {
             options={props.option}
             isSearchable={false}
             maxMenuHeight={200}
-            menuPlacement={'top'}
+            menuPlacement={'bottom'}
             menuPosition={'fixed'}
         />
     );
